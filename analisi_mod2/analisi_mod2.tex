@@ -1,0 +1,83 @@
+\documentclass{memoir}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}        % Codifica dei font migliorata
+\usepackage[utf8]{inputenc}     % Supporto caratteri UTF-8 (di default in LaTeX moderni)
+\usepackage{ulem}
+% \usepackage{unicode-math}
+%\setmathfont{Garamond Math}
+%\\usepackage[varbb]{newpxmath}
+%\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true]{microtype}
+% microtype makes text look nicer
+\usepackage[italian]{babel}     % Lingua italiana
+\title{Analisi mod2}
+\author{Flavio}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\NewTcbTheorem[number within=section]{mytheo}{Teorema}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+\NewTcbTheorem[number within=section]{deff}{Definizione}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+%%\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newcounter{example}[section]
+\newenvironment{example}[1][]{\refstepcounter{example}\par\medskip
+   \noindent \textbf{Esempio~\theexample. #1} \rmfamily}{\medskip}
+\begin{document}
+\maketitle
+
+\chapter{Serie Numeriche}
+\section{Introduzione}
+
+Le Serie numeriche sono trovate in molti campi, fin dall'antichità hanno descrito problemi come il paradosso di zenone o numeri decimale con espansione infinità come \(\pi \), grazie allo sviluppo dell'analisi nel '700 è possibile farne uno studio rigorso. Ad esempio il numero 0.333:
+
+\[0.333 = \frac{3}{10} + \frac{3}{100} + \frac{3}{1000} + \cdots + \frac{3}{10^n}
+\]
+\begin{deff}{Serie Numerica}{ser_num}
+  Data la successione di termine generica \(a_k\), costruiamo la nuova successione \(\{s_n\}\) come:
+\begin{align*}
+s_0 &= a_0\\
+s_1 &= a_0 + a_1\\
+s_2 &= a_0 + a_1 + a_2\\
+      &\vdots \\
+  s_n &= a_0 + a_1 + \cdots + a_n = \sum_{k=0}^n a_k
+\end{align*}
+\(s_n\) è la \textbf{somma parziale n-esima} della serie.
+\[
+  \sum_{k=0}^{+\infty} a_n\] è la serie di termine generale \(a_n\)
+\end{deff}
+% TODO: fa esempio
+\section{Carattere di una serie}
+
+\subsection{Serie convergente}
+Una serie \(\sum_{k=0}^{+\infty} a_n \) \textit{converge} se la successione delle somme parziali converge ad un numero \(l\), detto somma della serie.
+
+\fbox{%
+  \parbox{\textwidth}{
+    \begin{example}
+      Serie di Mengoli\\
+
+      \[
+        \sum_{i=0}^{+\infty} \frac{1}{n} - \frac{1}{n+1} \] \\
+      \begin{align*}
+        s_1 &= 1 -\frac{1}{2} \\
+        s_2 &= 1-\frac{1}{2}+\frac{1}{2}-\frac{1}{3} = 1-\frac{1}{3}\\
+        \vdots\\
+        s_n &= 1-\frac{1}{2} + \frac{1}{2} - \frac{1}{3} = 1-1/3 + \ldots + \frac{1}{n} - \frac{1}{n-1}            \end{align*}
+      Converge perchè: \(\lim_{n \to \infty} s_n = 1\)
+    \end{example}
+}%
+
+}
+
+\subsection{serie divergente}
+Una serie può Divergere positivamante o negativamente, se la successione delle somme n-esime diverge a \(+\infty\). Diverge negativamente, se la successione delle somme parziali \(-\infty\).
+
+
+
+
+
+
+\end{document}
