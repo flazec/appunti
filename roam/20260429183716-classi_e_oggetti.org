@@ -1,0 +1,106 @@
+:PROPERTIES:
+:ID:       a596ce1f-e585-4203-9f9d-0e1beac73bf5
+:END:
+#+title: #+title: classi e oggetti
+
+* Classi e oggetti
+
+Una classe è una parte del codice sorgente che descrive un particolare tipo di oggetto.
+Sono definite dal programmatore.
+La classe definisce la struttura in termini di:
+-*campi* (stato) degli oggetti
+-*metodi* degli oggetti
+-Un oggetto è un'istanza (un esemplare) di una classe
+
+** classe e oggetti a confronto
+| Classe                                                                    | Oggetto                                             |
+| Definita all'interno del codice sorgente del programma                    | un'entità all'interno di un programma in esecuzione |
+| scritta dal programmatore                                                 | creato quando un programma "gira"                   |
+| Specifica il comportamento dei suoi oggetti mediante il codice dei metodi | Si comporta nel modo prescritto dalla classe quando il metodo corrispondente a tempo di esecuzione |
+
+** Classe e file sorgenti
+- Ogni classe è memorizzata in un file separato il
+- Il nome del file *Deve essere uguale* a quello della classe, con estensione .java
+- I nomi iniziano sempre con una maiuscola
+- I nomi in Java sono case-sensitive
+
+*** file Automobile.java
+#+begin_src java
+public class Automobile
+    {
+        ...
+}
+#+end_src
+
+** Librerie di Classi e package
+I programma java non sono scritti da zero Esistono miglia di classi di libreria per ogni esigenza. Un package "speciale" è java.òang: contiene le classi fondamentali per la programmazione in Java.
+** Struttura di una classe
+ #+begin_src java
+ public class Counter
+ {
+ // campi
+ private int value;
+
+ //costruttore
+ public Counter()
+ {
+ value = 0
+ }
+ //metodi
+
+ //incrementa il contatore
+ public void count()
+ {
+ value++;
+ }
+ // ottiene il valore corrente del contatore
+ public int getValue() {return value;}
+ }
+ #+end_src java
+** Campi
+Un campo (detto anche *varibile di istanza*) costituisce la memoria privata di un oggetto; ha un tipo di dato o un un nome/identificativo.
+*** Dichiarazione di un campo
+se sono tra parentisi quadre sono opzionali
+#+begin_src java
+private [static] [final] tipo_di_dati nome;
+#+end_src java
+*** variabili locali vs campi
+*** Sono visibili almeno all'interno di tutti gli oggetti della stessa classe. Esistono per tutta la vita di un oggetto
+*** Le variabili locali sono variabili definite all'interno di un metodo e sono visibili all'interno del metodo e la loro durata è limitata alla durata dell'esecuzione del metodo.
+
+** Metodi
+Il nome di un metodo inizia con una lettera minuscola, mentre le parole seguenti iniziano con una lettera maiuscola: convezione detta CamelCase.
+*** definizione metodo
+Un metodo è diviso in 2 parti: Intestazione e corpo.
+*L'intestazione* comprende la visibilità del metodo, il tipo di ritorno e il nome del metodo. Il corpo comprende le istruzioni.
+
+#+begin_src java
+public tipo_di_dati nomeDelMetodo(tipo_di_dati nomeParam1,..., tipo_di_dati nomeParam)
+{
+istruzione 1;
+istruzione m;
+}
+#+end_src java
+** Costruttori
+I costruttori sono metodi per la crazione di oggetti. Hanno lo stesso nome della classe; il loro scopo è inizializzare i campi dell'oggetto. Possono prender zero, uno o più parametri. NON hanno valori di uscita *ma non viene specificato void*. Una Classe può avere più costruttori o non averne nessuno che differiscono nel numero e nei tipi dei parametri.
+Se non viene specificato alcun costruttore allora java crea una classe con costruttore vuoto senza parametri. Inizializza le variabili d'istanza ai valori di default
+*** Costruttore per la classe counter
+#+begin_src java
+public Counter()
+{
+value = 0;
+}
+public Counter(int initialValue)
+{
+value = initialValue;
+}
+#+end_src java
+*** Creazioni oggetti
+#+begin_src java
+static public void main(String[] args)
+{
+Counter contatore1 = new Counter(); // qui chiamiamo il costruttore con zero argomenti e quindi value = 0
+Counter contatore2 = new Counter(42);
+System.out.println("Valore del Contatore1:" +contatore1.getValue());
+}
+#+end_src java

@@ -1,0 +1,26 @@
+:PROPERTIES:
+:ID:       2819a212-ea7e-4ca7-8d79-8f500dd1096d
+:END:
+#+title: #+title: Introduzione corso
+
+* Programmazione orientata agli oggetti
+La progrmmazione orientata agli oggetti fornisce nuovi elementi per rappresentare elementi nello spazio del problema:
+- Gli elementi sono chiamati *oggetti*
+  - Pensiamo a modellare gli oggetti, non il programma (che vuol dire?)
+** Tutto è un oggetto:
+- Ha uno stato con cui altri oggetti o sé stesso interagiscono.
+  - Ha delle operazioni con che puoi chiedergli di eseguire
+    Per effettuare una richiesta ad un oggetto si manda un messaggio a quell'oggetto. Un messaggio è una *chiamata* a una *funzione* (metodo) che appartiene a un particolare oggetto.
+** Incapsulamento e information hiding
+Un programma può nascondere la sua complessità mediante la semplicità degli oggetti
+** Ogni oggetto possiede un tipo detto *classe* ed è istanza di una classe. La classe viene identificata dai messaggi (metodi).
+** Ereditarietà: vogliamo evitare di ricreare nuove classi di oggetti quando esse hanno funzionalità simili.
+** Polimorfismo:Basta sapere la classe base, senza dover conoscere la classe specifica.
+
+
+* Il linguaggio che useremo: Java
+Java un linguaggio creato all'alba del nuovo millennio: orientato agli oggetti.
+** Caratteristiche principali
+- Portabile: WORA(*write once, run anywhere*)
+  Al contrario dl linguaggi come il  C o C++ non viene compilato per una piattaforma, ma viene compilato in *bytecode*, per una macchina virtuale la *Java virtual machine*. Il bytecode è tradotto al volo in istruzioni per la piattaforma.
+- Sicurezza: La maggior parte degli errori che possono avvenire a run-time vengono eliminate a tempo di compilazione. Dove non è possibile sono gestite a tempo di esecuzione.

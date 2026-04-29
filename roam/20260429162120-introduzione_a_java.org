@@ -1,0 +1,144 @@
+:PROPERTIES:
+:ID:       29e51758-77cd-4e8f-b56a-968dd42cb42a
+:END:
+#+title: #+title: introduzione a java
+
+* Tipi di dato base
+I tipi di base sono built-in, non sono creati dall'utente. Serve esserne a conoscenza per ragion di efficenza.
+** Un tipo di dato descrive un insieme di valori e di operazioni definite su quei valori:
+-Interi
+-Reali
+-Booleani
+-Caratteri
+-Stringhe
+** Principali tipi di dato di base
+
+| Tipo    | Dominio                  | Operatori |
+| int     | Interi                   | +-*/%     |
+| double  | Numeri in virgola mobile |           |
+| boolean | valori booleani          | &&        |
+| char    | caratteri                | + -       |
+
+** Tutti i tipi built-in
+| Tipo    | Intervallo                                                                    | Dimensione |
+| float   | parte intera: ±1038, parte frazionaria: circa 7 cifre  decimali significative | 4 byte     |
+| double  | parte intera ±10308, parte frazionario: circa 15 cifre decimali significative | 8 byte     |
+| int     | -2147483648…2147483647                                                        | 4 byte     |
+| long    | -2147483648…2147483647                                                        | 4 byte     |
+| boolean | true,false                                                                    | 1 byte     |
+| char    | rappresenta tutti i caratteri codificati con unicode                          | 2 byte     |
+| short   | -32768…32767                                                                  | 2 byte     |
+| byte    | -128…127                                                                      | 1 byte     |
+
+** Precedenza operatori aritmetici
+| Operatori | Operazioni                      | Precedenza                                      |
+| *,/,%     | Moltiplicazione,divisione,resto | Valutati per primi, da sinistra verso destra    |
+| +,-       | Addizione,Sottrazione           | Valutati per sencondi, da sinistra verso destra |
+
+
+* Variabili, dichiarazioni e assegnazioni
+Una variabile è un nome usato per riferirsi a un valore di un tipo di dato
+- Può essere dichiarata (~int a;~) e quindi non è detto che abbia un valore, se non in certi contesti specifici.
+  - Il valore viene assegnato a una variabile mediante assegnazione ~a = 0;~
+    - Si può anche dichiarare e assegnare allo stesso tempo: ~int a = 0;~
+
+      #+begin_src java
+    int a,b; // dichiarazione
+    a = 5; // assegnazione
+    b = a+10; // altra assegnazione
+    int c = a+b; // dichiarazione e assegnazione
+    a = c-3; // assegnazione
+      #+end_src
+
+
+* Letterali
+
+Un letterale è una rappresentazione nel codice sorgente del valore di un tipo di dato.
+
+- 27 e 32 sono letterali per gli ~interi~
+  - 3.14 è un letterale per i ~double~
+    - ~true~ o ~false~ sono gli unici due letterali per il tipo booleano
+      - ~"ciao mondo"~ è un letterale per il tipo String
+** per distinguere gli interi da i numeri in virgola mobile
+- Le costanti di tipo ~int~ sono semplicemente numeri nell'intervallo [-2000000000,+2000000000]
+  - Le costanti di tipo ~long~ sono specificate con il suffisso ~l~ o ~L~
+** Virgola mobile
+- ~double~: numeri con la virgola
+  - ~float~: hanno il suffisso ~f~ o ~F~: ~10.5f~
+
+* Espressioni
+Un' Espressione è un letterale, una variabile o una sequenza di operazioni su letterali o varibili che producono un valore.
+
+#+begin_src java
+int a = 42*(x-2)+y;
+
+#+end_src
+
+* Caratteri e Stringhe
+Un ~char~ è un carattere alfanumerico o un simbolo. Ci sono \(2^{16}\) possibili valori di caratteri.
+** Caratteri di escape
+In alcuni casi dobbiamo rappresentare caratteri speciali o non stampabili.
+*** breve lista
+- Tab: ~'\t'~
+- A capo: ~'\n'~
+- Backlash: ~'\\'~
+- Apice: ~‘\’’~
+- Virgolette: ~‘\”’~
+
+* Priorità operatori
+#TODO: spiega meglio
+| Operatori                         | Operazioni                          |
+| Post-incremento e post-decremento | ++var --var +espr -espr             |
+| Operatori moltiplicativi          | * / %                               |
+| Operatori additivi                | + -                                 |
+| shift                             | << >> >>>                           |
+| relazionali                       | < > <= >= instanceof                |
+| confronto                         | ~ == != ~                             |
+| And bit a bit                     | &                                   |
+| XOR                               | ^                                   |
+| OR                                |                                     |
+| OR logico                         |                                     |
+| operatore ternario                | ?:                                  |
+| lambda                            | ->                                  |
+| assegnazione                      | = += -= *= /= %= &= ^= <<= >>= >>>= |
+
+
+* Conversioni di tipo
+
+Supponiamo di voler utilizzare il programma per effettuare dei calcoli. Come convertiamo da ~stringa~ a ~intero~?
+** conversione automatica a stringa
+ Quando cerchiamo di concatenare a una stringa un operando di tipo diverso viene convertito automaticamente a stringa.
+
+#+begin_src java
+public class PensieroProfondo
+    {
+        public static void main(String[] args)
+            {
+                String s = "La risposta alla fondamentale sulla vita, l'universo e tutto quanto e' ";
+                int v = 42;
+                String risposta = s+v; // equivalente a String risposta = s+Integer.parseInt(v)
+                System.out.println(risposta);
+            }
+}
+#+end_src
+
+#+RESULTS:
+: La risposta alla fondamentale sulla vita, l'universo e tutto quanto e' 42
+
+** Conversione esplicita
+Utilizzando un metodo che prende in ingresso un argomento di un tipo e restituisce un valore di un altro tipo.
+~Integer.parseInt(int n), Double.parseDouble(double n), Math.round(double n),  Math.floor(double n), Math.ceil(double n)~
+** Cast esplicito
+Anteponendo il tipo desiderato tra parentesi all'espressione essa verrà convertita.
+#+begin_src java
+System.out.println((int)2.781828);
+#+end_src
+
+#+RESULTS:
+: 2
+** Cast implicito
+*** Avviene o in fase di assegnazione: byte, short e char possono essere prommossi a int.
+-int può essere promosso a long
+-float a double
+*** calcolo espression
+se uno dei due operandi è double, l'intera espressione è promossa a double. Altrimenti se uno dei due operandi è float, l'intera espressione è promossa a float
