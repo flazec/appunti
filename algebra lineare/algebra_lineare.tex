@@ -1,0 +1,341 @@
+\documentclass{memoir}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}        % Codifica dei font migliorata
+\usepackage[utf8]{inputenc}     % Supporto caratteri UTF-8 (di default in LaTeX moderni)
+\usepackage{ulem}
+\usepackage{tikz}
+% \usepackage{unicode-math}
+%\setmathfont{Garamond Math}
+%\\usepackage[varbb]{newpxmath}
+%\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true]{microtype}
+% microtype makes text look nicer
+\usepackage[italian]{babel}     % Lingua italiana
+\title{Algebra Lineare}
+\usepackage{tcolorbox}
+\usepackage{dirtytalk}
+
+\tcbset {
+  base/.style={
+    arc=0mm,
+    bottomtitle=0.5mm,
+    boxrule=0mm,
+    colbacktitle=black!10!white,
+    coltitle=black,
+    fonttitle=\bfseries,
+    left=2.5mm,
+    leftrule=1mm,
+    right=3.5mm,
+    title={#1},
+    toptitle=0.75mm,
+  }
+}
+
+
+\definecolor{brandblue}{rgb}{0.34, 0.7, 1}
+\newtcolorbox{mainbox}[1]{
+  colframe=brandblue,
+  base={#1}
+}
+
+\newtcolorbox{subbox}[1]{
+  colframe=black!30!white,
+  base={#1}
+}
+\newtheorem{definizione}{\textbf{Definizione}}[section]
+\newtheorem{esempio}{Esempio}[section]
+\begin{document}
+\maketitle
+%% qualche problemino di organizzazione con i capitoli: metto vettori e matrici qui? prima di sistemi lineari
+
+\chapter{Punti, Vettori e matrici}
+In algebra lineari gli attori principali che studiamo sono vettori e matrici. Seguono le definizioni strettamente necessarie per comprendere i prossimi capitoli.
+\section{Punti e vettori}
+Un elemento di \(\mathbb{R}^n\) è una lista ordinata di numeri, ma questa lista può essere interpretata in 2 modi: come un punto o come un vettore.
+\begin{tcolorbox}
+  \begin{definizione}
+    punti e vettori
+  \end{definizione}
+  L'elemento di \(\mathbb{R}^n\) con coordinate \(x_1,x_2,\cdots, x_n\) può essere interpretato come il \textit{punto} \(\textbf{x}= \begin{pmatrix}
+    x_1\\
+    x_2\\
+    \vdots\\
+    x_n
+ \end{pmatrix}
+ \) o il vettore \(\vec{x}=\begin{bmatrix}
+   x_1\\
+   x_2\\
+   \vdots\\
+   x_n
+ \end{bmatrix}
+ \), che rappresentano un incremento rispetto un punto in \(\mathbb{R}^n\)
+\end{tcolorbox}
+
+\begin{esempio}Differenza tra punti e vettori \end{esempio} L'elemento di \(\mathbb{R}^n\) con coordinate x=2 e y=3 può essere interpretato come il punto \(\begin{pmatrix}
+    2\\
+    3
+
+  \end{pmatrix}\) o come il vettore \(\begin{bmatrix}
+    2\\
+    3
+  \end{bmatrix}
+  \) che significa:\say{Inizia da qualsiasi punto e spostati di due unità a destra e tre unità in alto}
+  \subsection{I vettori possono essere sommati, i punti no}
+  Possiamo identificare la posizione di una città su una mappa, cioè le sue coordinate, ma non aggiungiamo mai le loro posizioni. Ad esempio non aggiungiamo mai le posizioni di \textbf{Roma} o \textbf{Milano}. Ha senso invece la loro differenza (distanza): quanto dobbiamo aggiungere a un punto per arrivare all'altro. La differenza tra un punto \textbf{a} e un punto \textbf{b} è il vettore  \(\vec{\textbf{a}-\textbf{b}}\).
+
+  \begin{definizione}
+    Somma tra vettori
+  \end{definizione}
+  I vettori sono sommati aggiungendo le loro componenti:
+  \begin{equation}
+    \begin{bmatrix}
+      v_1\\
+      v_2\\
+      \vdots\\
+      v_n
+    \end{bmatrix} +
+    \begin{bmatrix}
+      w_1\\
+      w_2\\
+      \vdots\\
+      w_n
+
+    \end{bmatrix} = \begin{bmatrix}
+      v_1+w_1\\
+      v_2+w_2\\
+      \vdots\\
+      v_n+w_n
+    \end{bmatrix}
+    \end{equation}
+
+    Nel piano, la somma \(\vec{v}+\vec{w}\) è la diagonale del parallelogramma i cui 2 lati adiacenti sono \(\vec{v}\) e \(\vec{w}\)
+
+    \section{prodotto tra scalare e vettore}
+    Il prodotto tra scalare e vettore è molto semplice: ogni elemento del vettore è moltiplicato per lo scalare.
+
+    \begin{equation}
+      a \begin{bmatrix}
+        x_1\\
+        \vdots\\
+        x_n
+      \end{bmatrix} = \begin{bmatrix}
+        ax_1\\
+        \vdots\\
+        ax_n
+      \end{bmatrix}
+     3 \cdot \begin{bmatrix}
+    2\\
+    4\\
+    \sqrt(2)
+  \end{bmatrix} = \begin{bmatrix}
+    6\\
+    12\\
+    3\sqrt{2}
+  \end{bmatrix}
+\end{equation}
+\section{Matrici}
+\begin{tcolorbox}
+  Una matrice  \( m \times n \) è una lista rettangolare di altezza \(m\) e \(n\) lunga. Denotiamo \textit{l}' insieme delle matrici con Mat(m,n) o con \(M_{m,n}(\mathbb{K})\) in campo \(\mathbb{K}\). Il numero \(a_{ij}\) è l'elemento di posto (i,j) della matrice A, dove il primo è l'indice di riga, mentre il secondo è l'indice j è l'indice di colonna.
+\end{tcolorbox}
+Usiamo lettere maiuscole per denotare le matrici. Un vettore \(\vec{v} \in \mathbb{R}^m\) è una matrice \(m \times 1\); un numero è una matrice \(1 \times 1\). Ma perchè dobbiamo occuparci di matrici invece di matrici quando già esistono i vettori? la risposta che le matrice ci permettono di fare una operazione: la moltiplicazione tra matrici.
+\subsection{moltiplicazioni tra matrice}
+Il primo elemento della riga AB è ottenuta moltiplicando gli elementi della riga per gli elementi della corrispondente colonna e poi aggiungendo quei prodotti assieme. Ad esempio il primo elemento della matrice AB è ottenuto così: \((2 \times 1) + (-1 \times 3)= -1\)
+\begin{equation}
+  \begin{bmatrix}
+    2 & -1\\
+    3 & 2
+  \end{bmatrix} \begin{bmatrix}
+    1 & 4 & -2\\
+    3 & 0 & 2
+  \end{bmatrix} =
+  \begin{bmatrix}
+    -1 & 8 & -6\\
+    9 & 12 & -2
+    \end{bmatrix}
+  \end{equation}
+
+  \begin{tcolorbox}
+    Se A è una matrice m × n
+il cui (i, j)-esimo elemento è \(a_{ij}\), e B è una matrice n × p il cui (i, j)-esimo elemento
+è bi,j , allora C = AB è la matrice m × p con elementi:
+\begin{equation}
+c_{i,j} =   \sum_{k=1}^n {a_{i,k}b_{k,j}} = a_{i,1}b_{1,j}+a_{i,2}b_{j,2} + \cdots +a_{i,n}b_{n,j}
+  \end{equation}
+\end{tcolorbox}
+\subsection{Matrci speciali}
+\subsection{Matrice identità}
+denotata con \(I_n\) è una matrice quadrata di dimensione \(n\) dove tutti gli elementi della diagonale principale sono costiuti dal numero 1, mentre i restanti elementi sono 0.
+\begin{equation}
+I_n = \begin{bmatrix}
+  1 & 0 & \cdots & 0\\
+  0 & 1 & \cdots & 0\\
+  \vdots & \vdots & \ddots\\
+  0 & 0 & \cdots & 1
+\end{bmatrix}
+\end{equation}
+
+\chapter{Sistemi Lineari}
+\section{sistemi di equazioni}
+Diciamo che vogliamo risolvere questo sistema di equazioni:
+
+\begin{align*}
+x_1+x_2 + x_4 + x_5&= 2\\
+2x_1+2x_2-x_3-x_5&=-1 \\
+3x_1+3x_2-2x_3-x_4-x_5 &= -2
+\end{align*}
+
+  Possono essere utilizzate diverse tecniche, ma la più usata è \emph{l'algoritmo di Gauss}. Prima di tutto si scrive il sistema in forma matriciale:
+ \begin{align}
+  \underbrace{
+  \begin{bmatrix}
+    1 & 0 &0 & 1 &1 \\
+    2 & 2 &-1 & 0 &-1\\
+    3 & 3 & -2 & -1 &-1
+  \end{bmatrix}
+    }_{\text{matrice coefficenti A}}
+    \quad
+  \underbrace{
+  \begin{bmatrix}
+    x \\
+    y \\
+    z
+  \end{bmatrix}}_{\text{vettore incognite } \vec{x}}
+    \quad
+    \underbrace{
+    \begin{bmatrix}
+      2 \\
+      -1 \\
+      -2
+    \end{bmatrix}
+    }_{ \text{vettore termini noti } \vec{b} }
+    \end{align}
+    Più generalmente il sistema di equazioni \(m\) in \(n\) incognite è scritto come
+    \[
+      \begin{matrix}
+        a_\text{1,1}x_1 & + \dots + &x_\text{1,n}x_n &= b_1 \\
+        \vdots& \cdots & \vdots & \vdots\\
+        a_\text{m,1}x_1 & +\dots+&a_\text{m,n}x_n &= b_m
+        \end{matrix}
+      \]
+      ed uguale ad \(A\vec{x}=\vec{b}\):
+      \begin{align*}
+      \begin{bmatrix}
+        a_\text{1,1} & \dots & a_\text{1,n}\\
+        \vdots  & & \vdots \\
+        a_\text{m,1} & \dots & a_\text{m,n}
+      \end{bmatrix}
+      \begin{bmatrix}
+          x_1\\
+          \vdots\\
+          x_n
+      \end{bmatrix}
+        =
+        \begin{bmatrix}
+          b_1\\
+          \vdots\\
+          b_m
+          \end{bmatrix}
+      \end{align*}
+      Con \( [A|\vec{b}]\), o anche \(A'\), si rappresenta \textbf{la matrice completa del sistema}. La matrice completa contiene sia coefficenti e termini noti. Tutte le operazioni per risolvere un sistema sono fatte sulla matrice completa del sistema. Una soluzione del sistema è \textit{n-upla} \(v_1,\dots, v_n\) che se sostituita all'interno del vettore \(\vec{x}\) soddisfano le equazioni del sistema. Il sistema è compatibile se esiste almeno una soluzione. Un soluzione del sistemi è una n-pla \(\begin{bmatrix}
+      x_1\\
+      x_2\\
+      \vdots\\
+        x_m\
+        \end{bmatrix}\) che se sostituita rende soddisfate tutte le equazioni
+
+      \section{Operazioni che lasciano il sistema invariato}
+      Si può risolvere un sistema di equazioni lineari \(A\vec{x}=\vec{b}\) utilizzando \textbf{L'algoritmo di Gauss} e usando le operazioni che lasciano il sistema invaritato.
+
+      \begin{tcolorbox}[
+        title=Matrice,
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries
+  {
+    Una matrice è una tabella rettangolare di m righe con n colonne. Una matrice quadra ha lo stesso numero di righe e colonne.
+
+  }
+\end{tcolorbox}
+
+  \begin{tcolorbox}[
+  title=Operezioni di riga,
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries
+  ]
+  \enumerate
+  \item moltiplicare una riga per un numero diverso da 0
+  \item  aggiungere una riga ad un altra riga
+  \item scambiare due righe
+
+\end{tcolorbox}
+Le operazioni di riga sono importanti perchè sono alla base dell' algoritmo di gauss. Anche perchè dato che si basano su operazioni aritmetiche elementari possono essere eseguite facilmente da un computer.
+
+\subsection{L'algoritmo di Gauass}
+I sistemi lineari possono essere portati in una forma equivalente che ci permette di capire facilmente se sono risolvibili: \textbf{La forma a scala}.
+\begin{tcolorbox}[title=sistemi equivalenti]
+  Due sistemi si dicono equivalenti se hanno le stesse soluzioni.
+\end{tcolorbox}
+\(\mathit{}\)
+\subsection{La forma a scala}
+La ragione per cui ci interessano tanto i sistemi a scala è che rendo motlo facile risolvere i sistemi lineari.
+\begin{definizione}
+  Matrice a scala
+\end{definizione}
+  Una matrice si dice a scala se soddisfa le seguenti proprietà:
+  \begin{enumerate}
+    \item Se una riga è nulla, allora tutte le righe sotto sono nulle.
+          \item Sotto il primo elemento non nullo di ciascuna riga, e sotto tutti gli zeri che lo precedono, ci
+sono elementi nulli. Questo elemento si chiama pivot.
+  \end{enumerate}
+\begin{equation}
+\begin{pmatrix}
+\uline{p_1} & * & *& *\\
+0 & \uline{p_1} & * & * \\
+0 & 0 & \uline{p_1} & * \\
+\vdots & \vdots & \vdots & \vdots\\
+  0 & 0 & 0 & 0
+\end{pmatrix}
+\end{equation}
+\subsection{matrice a scala ridotta}
+La matrice a scala ridotta differisce dalla matrice a scala solo per i pivot uguali ad 1.
+\begin{equation}
+\begin{pmatrix}
+\uline{1} & * & *& *\\
+0 & \uline{1} & * & * \\
+0 & 0 & \uline{1} & * \\
+  \vdots & \vdots & \vdots & \vdots\\
+  0 & 0 & 0 & 0\\
+\end{pmatrix}
+\end{equation}
+Se \~A contiene un gradino nei termini noti allora non ha una soluzione. Se non c'è un gradino nella colonna dei termini noti allora il sistema ha la forma:
+\begin{equation*}
+  \begin{bmatrix}
+    3 & 2 & 0 & 5\\
+    0 & 0 &-1 & -3\\
+    0 & 0 & 0 & 0
+  \end{bmatrix} \Longrightarrow \left\{\begin{aligned}
+    3x+2y&=5\\
+    -z&=-3
+  \end{aligned}\right. \Longrightarrow
+\left\{\begin{aligned} x&=\frac{1}{3}(5-2y)\\
+  z&=3
+  \end{aligned}\right.
+\end{equation*}
+\subsection{Rango di una matrice e numero di soluzione}
+L' algoritmo di Gauss ci permette di portare una matrice completa del sistema in una forma equivalente in cui è facile risolvere le equazioni. Una volta portata in forma a scalini possiamo partire dall'ultima equazione e sostituire all'indietro.
+\subsection{compatibilità}
+Un sistema è compatibile se esiste almeno una soluzione. Questo accade quando il numero dei pivot è uguale al numero delle incognite, in altre parole la lunghezza dei gradini è 1.
+\subsection{non compatibilità}
+Se l'ultimo pivot cade nella colonna dei termini noti allora il sistema non soluzione.
+\subsection{soluzioni inifinite con parametri liberi}
+Quando nella matrice in alcune colonne non ci sono pivot allora questo vuol dire che la colonna che corrisponde a quella variabile è un parametro libero chiamato \(t\) che può assumere un valore a nostro piacimento. Questo avviene se il numero di pivot è inferiore al numero di incognite.
+\begin{tcolorbox}[title=rango]
+  Il rango di una matrice è il numero di pivot nella matrice a scalini complete.
+  \begin{equation}
+    rg(A) =  \text{\# numero di pivot}
+    \end{equation}
+  \end{tcolorbox}
+\end{document}
