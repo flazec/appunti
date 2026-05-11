@@ -1,7 +1,7 @@
 :PROPERTIES:
 :ID:       2819a212-ea7e-4ca7-8d79-8f500dd1096d
 :END:
-#+title: #+title: Introduzione corso
+#+title: Introduzione corso
 
 * Programmazione orientata agli oggetti
 La progrmmazione orientata agli oggetti fornisce nuovi elementi per rappresentare elementi nello spazio del problema:

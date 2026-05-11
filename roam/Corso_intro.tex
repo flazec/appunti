@@ -1,0 +1,68 @@
+% Created 2026-05-11 Mon 12:29
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{flavio}
+\date{\today}
+\title{Introduzione corso}
+\hypersetup{
+ pdfauthor={flavio},
+ pdftitle={Introduzione corso},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Programmazione orientata agli oggetti}
+\label{sec:org7a8805e}
+La progrmmazione orientata agli oggetti fornisce nuovi elementi per rappresentare elementi nello spazio del problema:
+\begin{itemize}
+\item Gli elementi sono chiamati \textbf{oggetti}
+\begin{itemize}
+\item Pensiamo a modellare gli oggetti, non il programma (che vuol dire?)
+\end{itemize}
+\end{itemize}
+\subsection{Tutto è un oggetto:}
+\label{sec:org7a456f2}
+\begin{itemize}
+\item Ha uno stato con cui altri oggetti o sé stesso interagiscono.
+\begin{itemize}
+\item Ha delle operazioni con che puoi chiedergli di eseguire
+Per effettuare una richiesta ad un oggetto si manda un messaggio a quell'oggetto. Un messaggio è una \textbf{chiamata} a una \textbf{funzione} (metodo) che appartiene a un particolare oggetto.
+\end{itemize}
+\end{itemize}
+\subsection{Incapsulamento e information hiding}
+\label{sec:orgb80341d}
+Un programma può nascondere la sua complessità mediante la semplicità degli oggetti
+\subsection{Ogni oggetto possiede un tipo detto \textbf{classe} ed è istanza di una classe. La classe viene identificata dai messaggi (metodi).}
+\label{sec:org00b96e2}
+\subsection{Ereditarietà: vogliamo evitare di ricreare nuove classi di oggetti quando esse hanno funzionalità simili.}
+\label{sec:orga168ba2}
+\subsection{Polimorfismo:Basta sapere la classe base, senza dover conoscere la classe specifica.}
+\label{sec:orga114803}
+\section{Il linguaggio che useremo: Java}
+\label{sec:orgfd3026e}
+Java un linguaggio creato all'alba del nuovo millennio: orientato agli oggetti.
+\subsection{Caratteristiche principali}
+\label{sec:orgc10214c}
+\begin{itemize}
+\item Portabile: WORA(\textbf{write once, run anywhere})
+Al contrario dl linguaggi come il  C o C++ non viene compilato per una piattaforma, ma viene compilato in \textbf{bytecode}, per una macchina virtuale la \textbf{Java virtual machine}. Il bytecode è tradotto al volo in istruzioni per la piattaforma.
+\item Sicurezza: La maggior parte degli errori che possono avvenire a run-time vengono eliminate a tempo di compilazione. Dove non è possibile sono gestite a tempo di esecuzione.
+\end{itemize}
+\end{document}

@@ -1,7 +1,9 @@
 :PROPERTIES:
 :ID:       a596ce1f-e585-4203-9f9d-0e1beac73bf5
 :END:
-#+title: #+title: classi e oggetti
+#+title: classi e oggetti
+#+LATEX_LISTINGS: t
+#+LATEX_HEADER: \usepackage{minted}
 
 * Classi e oggetti
 
@@ -13,6 +15,7 @@ La classe definisce la struttura in termini di:
 -Un oggetto è un'istanza (un esemplare) di una classe
 
 ** classe e oggetti a confronto
+
 | Classe                                                                    | Oggetto                                             |
 | Definita all'interno del codice sorgente del programma                    | un'entità all'interno di un programma in esecuzione |
 | scritta dal programmatore                                                 | creato quando un programma "gira"                   |
@@ -33,10 +36,10 @@ public class Automobile
 #+end_src
 
 ** Librerie di Classi e package
-I programma java non sono scritti da zero Esistono miglia di classi di libreria per ogni esigenza. Un package "speciale" è java.òang: contiene le classi fondamentali per la programmazione in Java.
+I programma java non sono scritti da zero Esistono miglia di classi di libreria per ogni esigenza. Un package "speciale" è java.lang: contiene le classi fondamentali per la programmazione in Java.
 ** Struttura di una classe
  #+begin_src java
- public class Counter
+public class Counter
  {
  // campi
  private int value;
@@ -46,27 +49,34 @@ I programma java non sono scritti da zero Esistono miglia di classi di libreria 
  {
  value = 0
  }
+ public Counter(int value){
+ this.value = value;
+ }
  //metodi
 
  //incrementa il contatore
- public void count()
- {
+ public void count() {
  value++;
  }
  // ottiene il valore corrente del contatore
  public int getValue() {return value;}
+ public static void main(String[] args)
+ {
+ Counter a = Counter();
+
  }
- #+end_src java
+ }
+ #+end_src
 ** Campi
 Un campo (detto anche *varibile di istanza*) costituisce la memoria privata di un oggetto; ha un tipo di dato o un un nome/identificativo.
 *** Dichiarazione di un campo
 se sono tra parentisi quadre sono opzionali
 #+begin_src java
 private [static] [final] tipo_di_dati nome;
-#+end_src java
+#+end_src
 *** variabili locali vs campi
-*** Sono visibili almeno all'interno di tutti gli oggetti della stessa classe. Esistono per tutta la vita di un oggetto
-*** Le variabili locali sono variabili definite all'interno di un metodo e sono visibili all'interno del metodo e la loro durata è limitata alla durata dell'esecuzione del metodo.
+- Sono visibili almeno all'interno di tutti gli oggetti della stessa classe. Esistono per tutta la vita di un oggetto
+-  Le variabili locali sono variabili definite all'interno di un metodo e sono visibili all'interno del metodo e la loro durata è limitata alla durata dell'esecuzione del metodo.
 
 ** Metodi
 Il nome di un metodo inizia con una lettera minuscola, mentre le parole seguenti iniziano con una lettera maiuscola: convezione detta CamelCase.
@@ -84,7 +94,7 @@ istruzione m;
 ** Costruttori
 I costruttori sono metodi per la crazione di oggetti. Hanno lo stesso nome della classe; il loro scopo è inizializzare i campi dell'oggetto. Possono prender zero, uno o più parametri. NON hanno valori di uscita *ma non viene specificato void*. Una Classe può avere più costruttori o non averne nessuno che differiscono nel numero e nei tipi dei parametri.
 Se non viene specificato alcun costruttore allora java crea una classe con costruttore vuoto senza parametri. Inizializza le variabili d'istanza ai valori di default
-*** Costruttore per la classe counter
+*** Costruttore per la classe Counter
 #+begin_src java
 public Counter()
 {
@@ -94,13 +104,163 @@ public Counter(int initialValue)
 {
 value = initialValue;
 }
-#+end_src java
+#+end_src
+
 *** Creazioni oggetti
+
+* Incapsulamento
+L'incapsulamento è una delle idee chiave della programmazione ad oggetti. Permette di nascondere le informazioni all'utente (*information hiding*).
+** Definizione
+Il processo che nasconde i dettagli realizzativi rendendo pubblica un'interfaccia.
+- dettagli realizzativi: campi e implementazione
+- interfaccia pubblica: metodi pubblici
+L'obiettivo è creare una scatola nera così che l'utente non sappia tutto, ma solo lo stretto necessaria per usare il programma. *Facilità il lavoro di gruppo* e l'aggiornamento del codice.
+Aiuta a rilevare errori: in presenza di moltissime classi (perché?)
+** Interazione tra classi
+Le classi interagiscono con le altre principalmente attraverso *costruttori e metodi pubblici*. Le altri classi *non DEVONO* conoscere i dettagli implemantivi di una classe per usarla in modo effficace.
+** Accesso a campi e metodi
+I campi e metodi possono essere pubblici e privati.
+*** privati
+Solo la classe che li ha creati può accedere ai campi e chiamare i metodi
+*** pubblici
+I metodi possono essere chiamati da tutti e i campi possono essere visti da tutti.
+
+* Approfondimento sui metodi
+I metodi permettono di modularizzare un programma separandone i compiti in unità autocontenute. Le istruzioni di un metodo non sono visibili da un altro metodo. Certi metodi non utilizzano lo stato dell'oggetto.
+** metodi statici
+Il modificatore statico specificato nell'intestazione del metodo.
+Due modi per chiamare:
+- Dall'interno della classe, semplicemente chiamando il metodo.
+  - Dall'esterno, NomeClasse.nomeMetodo()
 #+begin_src java
-static public void main(String[] args)
-{
-Counter contatore1 = new Counter(); // qui chiamiamo il costruttore con zero argomenti e quindi value = 0
-Counter contatore2 = new Counter(42);
-System.out.println("Valore del Contatore1:" +contatore1.getValue());
+public static String getLinea(int k)
+    {
+        String s = "";
+        while(k-- > 0) s+="*";
+        return s;
+    }
+#+end_src
+
+** Fun fact su main()
+Perchè è statico? la *J*ava *V*irtual *M*achine (*JVM)invoca il metodo main della classe specificata prima. La classe potrebbe non avere un costruttore senza parametri con cui creare l'oggetto e senza static verrà creata una istanza.
+** Setter e Getter
+L'accesso ad alcuni campi è garantito dai metodi getX() setX() dove X è il campo. Garantiscono la consistenza dei dati. Fanno da filtro tra i dettagli implementativi e ciò che vede l'utente esterno.
+* Campi statici
+Specificando static nella dichiarazione del campo. Si può accedere dall'interno della classe semplicemente con il nomeCampo. NomeClass.nomeCampo.
+** campi statici noti
+Sono tutti ~public final static~ perchè accessibili a tutti; final perchuè costanti; static perchè non variano secondo lo stato dell'oggetto.
+** importazione statica dei campi
+Import static permette di importare campi static come se fossere definiti nella classe in cui si importano.
+#+begin_src java
+import static java.lang.Math.E;
+public class StaticImport
+    {
+        public static void main(String[] args)
+            {
+                System.out.println(E);
+
+        }
 }
-#+end_src java
+#+end_src
+* Enumerazioni
+Le enumerazioni sono dei tipi i cui valori possono essere szcelti tra un iniseme predefinito di identificatori univoci. Ogni identificatore corrisponde a una costante. Tutte le costanti enumerative sonho implicitamente static. Non si possono creare oggetti di tipo enumerato.
+** Dichiarazione Enumerazione
+#+begin_src java
+public enum SemeCarta
+    {
+        CUORI,
+        QUADRI,
+        FIORI,
+        PICCHE
+    }
+
+#+end_src
+
+** Con Costruttori, Campi, Metodi (acchittata)
+Senza enumerazioni
+#+begin_src java
+public class Mese
+    {
+        private int mese;
+        public Mese(int mese) {this.mese = mese;}
+        public int toInt() {return mese;}
+        public String toString()
+            {
+                switch(mese)
+                    {
+                        case 1: return "GEN";
+                        case 2: return "FEB";
+                        case 12 return "DIC";
+                        default: return null;
+                    }
+            }
+}
+#+end_src
+Con enumerazioni
+#+begin_src java
+public enum Mese
+    {
+        GEN(1),FEB(2),MAR(3),APR(4),MAG(5),GIU(6),LUG(7),AGO(8),SET(9),OTT(10),NOV(11),DEC(12);
+        private int mese;
+        Mese(int mese) {this.mese = mese;}
+        public int toInt() {return mese;}
+
+        public static void main(String[] args)
+        {
+            Mese[] mesi = SemeCarta.valueOf
+            for(int i = 0; )
+        }
+    }
+
+#+end_src
+** values e valueOf
+Per ogni enumerazione, il compilatore crea due metodi statici values() che restuisce un array delle costanti enumerative. Viene generato anche un metodo ValueOf(String NomeCostante) che restituisce la costante enumerativa associatra alla stringa fornita in input. Se il valore non esiste, viene generato un errore(eccezione)
+** Enumerazioni con switch
+#+begin_src java
+Semecarta seme null
+    switch(seme)
+        {
+            case GEN : System.out.println("NUOVO ANNO");break;
+            default: break;
+        }
+
+#+end_src
+* Classi Wrapper
+Permettono di gestire un valore primitivo come un oggetto. Forniscono metodi di accesso e visualizzazione dei valori. Essi sono
+
+| Tipo primitivo | Classe    | Argomenti del costruttore |
+| byte           | Byte      | byte o String             |
+| short          | Short     | short o String            |
+| int            | Intger    | int o String              |
+| long           | Long      | long o String             |
+| float          | Float     | float, double o String    |
+| double         | Double    | double o String           |
+| char           | Character | char                      |
+| boolean        | Boolean   | boolean o String          |
+** Confrontare oggetti
+Dato che adesso abbiamo oggetti ci troviamo in una situazione simile alle stringhe
+Per il confronto usiamo:
+- equals(): restituisce true se e solo se l’oggetto in input è
+un intero di valore uguale al proprio
+- compareTo(): restituisce 0 se sono uguali, < 0 se il
+proprio valore è < di quello in ingresso, > 0 altrimenti
+
+** Autoboxing e auto-unboxing
+L'autoboxing converte automaticamente un tipo primitivo al suo tipo wrapper associato.
+#+begin_src java
+Integer k = 3;
+Integer[] array = {5,3,7,8}; // autoboxing
+int j = k; // k.intValue();
+int n = array[j] // equivalente a array[j].intValue();
+#+end_src
+L'auto-unoboxing converte automaticamente da un tipo wrapper all'equivalente tipo primitivo.
+*** Nelle stringhe
+#+begin_src java
+String s = "Mondo"; // String s = new String("Mondo")
+String s = "ciao".toUpperCase(); // new String("ciao").toUpperCase();
+#+end_src
+
+#+RESULTS:
+
+** Costo oggetto memoria
+Costa minimo 8 byte.

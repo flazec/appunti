@@ -1,26 +1,28 @@
 :PROPERTIES:
 :ID:       29e51758-77cd-4e8f-b56a-968dd42cb42a
 :END:
-#+title: #+title: introduzione a java
-
+#+title:introduzione a java
+#+LATEX_LISTINGS: t
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER:\usepackage{tabularx}
 * Tipi di dato base
 I tipi di base sono built-in, non sono creati dall'utente. Serve esserne a conoscenza per ragion di efficenza.
 ** Un tipo di dato descrive un insieme di valori e di operazioni definite su quei valori:
--Interi
--Reali
--Booleani
--Caratteri
--Stringhe
-** Principali tipi di dato di base
-
+#+LABEL: Tipi di dato
 | Tipo    | Dominio                  | Operatori |
+|---------+--------------------------+-----------|
 | int     | Interi                   | +-*/%     |
 | double  | Numeri in virgola mobile |           |
 | boolean | valori booleani          | &&        |
 | char    | caratteri                | + -       |
+|---------+--------------------------+-----------|
+|         |                          |           |
+
+
 
 ** Tutti i tipi built-in
 | Tipo    | Intervallo                                                                    | Dimensione |
+|---------+-------------------------------------------------------------------------------+------------|
 | float   | parte intera: ±1038, parte frazionaria: circa 7 cifre  decimali significative | 4 byte     |
 | double  | parte intera ±10308, parte frazionario: circa 15 cifre decimali significative | 8 byte     |
 | int     | -2147483648…2147483647                                                        | 4 byte     |
@@ -29,11 +31,16 @@ I tipi di base sono built-in, non sono creati dall'utente. Serve esserne a conos
 | char    | rappresenta tutti i caratteri codificati con unicode                          | 2 byte     |
 | short   | -32768…32767                                                                  | 2 byte     |
 | byte    | -128…127                                                                      | 1 byte     |
+|---------+-------------------------------------------------------------------------------+------------|
+|         |                                                                               |            |
 
 ** Precedenza operatori aritmetici
 | Operatori | Operazioni                      | Precedenza                                      |
+|-----------+---------------------------------+-------------------------------------------------|
 | *,/,%     | Moltiplicazione,divisione,resto | Valutati per primi, da sinistra verso destra    |
-| +,-       | Addizione,Sottrazione           | Valutati per sencondi, da sinistra verso destra |
+| +,-       | Addizione,Sottrazione           | Valutati per secondi, da sinistra verso destra  |
+|-----------+---------------------------------+-------------------------------------------------|
+|           |                                 |                                                 |
 
 
 * Variabili, dichiarazioni e assegnazioni
@@ -86,8 +93,8 @@ In alcuni casi dobbiamo rappresentare caratteri speciali o non stampabili.
 - Virgolette: ~‘\”’~
 
 * Priorità operatori
-#TODO: spiega meglio
 | Operatori                         | Operazioni                          |
+|-----------------------------------+-------------------------------------|
 | Post-incremento e post-decremento | ++var --var +espr -espr             |
 | Operatori moltiplicativi          | * / %                               |
 | Operatori additivi                | + -                                 |
@@ -142,3 +149,79 @@ System.out.println((int)2.781828);
 -float a double
 *** calcolo espression
 se uno dei due operandi è double, l'intera espressione è promossa a double. Altrimenti se uno dei due operandi è float, l'intera espressione è promossa a float
+* Istruzioni di controllo
+Finora abbiamno controllato il flussso di esecuzione attraverso La sequenza (l'ordine di esecuzione delle istruzioni). Mediante le istruzioni di controllo condizionali possiamo controllare il flusso del programma.
+** if ed else
+Per realizzare una decisione si usa l'istruzion ~if~.
+- La sintassi è ~if(<espressione booleana>) solo un istruzione~
+  oppure:
+  ~if (<espressione boolean>)~ {
+  }
+
+  #+begin_src java
+if (x < 0) x = -x; // calcola valore assoluto
+if(x < y){ //credit default swap
+    int t = x;
+    x = y;
+    y = t;
+
+}
+  #+end_src
+- l'~else~ *che è facoltativo* viene eseguito se la condizione è falsa. Bisogna fare attenzione quando si annidano i diversi if ed else: l'else si riferisce sempre all'ultimo .
+  #+begin_src java
+if(x > 0)
+    if(y > 0)
+        System.out.println("x e y sono  > 0");
+else
+    System.out.println("x <= 0")
+if(x > 0)
+    if(y > 0)
+        if(z < 5)
+            if(w >= 3)
+                System.out.println("x e y >= 0 e z <= 5 e w >= 3")
+  #+end_src
+** Switch
+Per confrontare una espressione intera si può usare l'espressione ~switch~
+#+begin_src java
+String hello = null;
+switch(new Random.nextInt(6))
+    {
+        case 0: hello = "Ciao" break;
+        case 1: hello = "hello" break;
+            // etc ...
+
+    }
+//versione più compatta
+String s = switch(c) // converte un carettere in rappresentazione
+{
+    switch 'k' -> "kappa";
+    switch 'h' -> "acca";
+    switch 'l' -> "elle";
+    default -> "non so leggerlo";
+}
+#+end_src
+* Istruzioni iterative
+Ci sono 3 tipi di istruzioni iterative: ~while, for, do while~
+
+** while
+sintassi:
+while(<espressione>)
+{
+fino a quando espressione è vera
+}
+semantica:
+eseguito fino
+** break e i cicli annidati
+Il break ci permette di uscire solamente dal ciclo corrente se non si specifica una etichetta.
+#+begin_src java
+outer:
+for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+            {
+                if (i == j) break outer;
+            }
+    }
+
+
+#+end_src

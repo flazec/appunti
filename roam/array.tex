@@ -1,0 +1,83 @@
+% Created 2026-05-11 Mon 12:31
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{flavio}
+\date{\today}
+\title{Array}
+\hypersetup{
+ pdfauthor={flavio},
+ pdftitle={Array},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+Un array in java rappresenta un gruppo di variabili (chiamate elementi) tutte dello stesso tipo.
+
+Gli array sono oggetti quindi le variabili di tipo array contengono il riferimento all'array in memoria. Gli elementi di un array possono essere tipi primitivi o riferimenti a oggetti.
+
+Dichiarazione di un array senza valori. Ogni elemento è inzializzato con il valore di default.
+
+\begin{minted}[]{java}
+int[] a; // dichiarazione
+a = new int[10] // creazione senza valori
+
+\end{minted}
+
+Creazione con valori
+\begin{minted}[]{java}
+a = new int[] {-5, -2, 3, 0, 1, -6, 75, 32, 122, 4};
+\end{minted}
+
+codice tipo
+int[] a = new int[10] \{1,2,3,4,5,6,7,8,9,10\}
+
+System.out.println(a[5])
+Indice sempre positivo, compreso tra 0 e la dimensione dell'array-1
+\subsection{Lughezza array}
+\label{sec:org2cd5b67}
+per la lughezza array \texttt{nomeArray.length} uh oh: campo pubblico? protected? coding horror.
+Esempio di uso:
+\begin{minted}[]{java}
+public int[] getArrayFattorial(final int n)
+    {
+        int[] fatt = new int[n];
+        fatt[0] = 1;
+        for (int k=1; k < n; k++) fatt[k] = fatt[k-1] *k;
+        return fatt;
+    }
+\end{minted}
+\subsection{Le dimensioni di un Array non sono modificabili}
+\label{sec:orgc43e93c}
+Una volta dichiarate non crescono dinamicamente, tipo vettore in C++. Bisogna utilizzare il metodo \textbf{CopyOf}. Se le dimensioni dell'array sono maggiori di quelle iniziali allora setta al valore di default per il tipo.
+\begin{minted}[]{java}
+int[] array = {1,5,8,2,3,4}
+    System.out.println(Arrays.toString(array));
+array = Arrays.copyOf(array,5); //restringe
+System.out.println(Arrays.toString(array));
+array = Arrays.copyOf(array,8); //restringe
+System.out.println(Arrays.toString(array));
+\end{minted}
+\section{Array a 2 dimensioni}
+\label{sec:orgc937843}
+Possiamo specificare un array a 2 dimensioni semplicemente specificando due coppie di parentesi quadre []:
+String[][] matrice = new String[RIGHE][COLONNE]
+L'accesso avviene specificando le due dimensioni dell'array:
+matrice[y][x].
+\end{document}

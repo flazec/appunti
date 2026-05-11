@@ -1,4 +1,4 @@
-\documentclass{memoir}
+\documentclass{report}
 \usepackage{amssymb}
 \usepackage{tcolorbox}
 \usepackage{amsmath}
@@ -7,6 +7,7 @@
 \usepackage[utf8]{inputenc}     % Supporto caratteri UTF-8 (di default in LaTeX moderni)
 \usepackage{ulem}
 \usepackage{tikz}
+\makeindex
 % \usepackage{unicode-math}
 %\setmathfont{Garamond Math}
 %\\usepackage[varbb]{newpxmath}
@@ -33,17 +34,6 @@
   }
 }
 
-
-\definecolor{brandblue}{rgb}{0.34, 0.7, 1}
-\newtcolorbox{mainbox}[1]{
-  colframe=brandblue,
-  base={#1}
-}
-
-\newtcolorbox{subbox}[1]{
-  colframe=black!30!white,
-  base={#1}
-}
 \newtheorem{definizione}{\textbf{Definizione}}[section]
 \newtheorem{esempio}{Esempio}[section]
 \begin{document}
@@ -335,7 +325,7 @@ Quando nella matrice in alcune colonne non ci sono pivot allora questo vuol dire
 \begin{tcolorbox}[title=rango]
   Il rango di una matrice è il numero di pivot nella matrice a scalini complete.
   \begin{equation}
-    rg(A) =  \text{\# numero di pivot}
+    rg(A) =  \text{\#pivot}
     \end{equation}
   \end{tcolorbox}
 \end{document}

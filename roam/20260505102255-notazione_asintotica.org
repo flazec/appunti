@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       1fe55c58-5d14-4463-b6e9-60f78460c418
+:END:
+#+title: Notazione asintotica
+
+*

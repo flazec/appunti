@@ -1,0 +1,82 @@
+:PROPERTIES:
+:ID:       a58c2abf-5e5e-402d-88d8-428a1ecc4608
+:END:
+
+#+title: Stringhe
+#+LATEX_LISTINGS: t
+#+LATEX_HEADER: \author{ok}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usepackage{babel}[italian]
+* Le stringhe
+in java nonostante le apparenze le stringhe non sono un tipo primitivo, ma sono importate dal package java.lang perché l'operatore + viene ridefinito. Inoltre dato che non un tipo primitivo non possiamo utilizzare i normali operatori che abbiamo utilizzato per accedere
+** ottenere la lunghezza
+
+La classe String è dotata del metodo ~length()~ ad esempio:
+String s = "Ciao"
+System.out.println(s.length()) stamperà 4
+** conversione a maiscuolo e minuscolo
+le stringhe hanno i metodi ~toLowerCase()~ e ~toUpperCase()~ che ritornano rispettivamente delle nuove stringhe in minuscolo o maiuscolo.
+#+begin_src java
+String min = "Ciao".toLowerCase(); // “ciao”
+String max = "Ciao".toUpperCase(); // “CIAO[[id:74295e9a-da30-42fe-bb04-de5e6d5a4166][heap_stack_metaspace]]n”
+String ariMin = max.toLowerCase(); // “ciao”
+System.out.println("Ciao");
+#+end_src
+
+#+RESULTS:
+: Ciao
+
+** ottenere i singoli caratteri
+per questo esiste il metodo charAt. Il primo carattere in posizione 0; l'ultimo carattere in posizione stringa.length()-1
+*importante*
+questo metodo ritorna molto utile per iterare sulla stringa carattere per carattere.
+for(int i = 0; i < s.length();i++)
+{
+System.out.println(s.charAt(i));
+}
+** creazione una sottostringa
+con il metodo s.substring(startIndex,endIndex). startIndex e endIndex devono essere compresi tra 0 e s.length()-1
+- startindex: indice di partenza
+  - endIndex: indice di fine
+**  Concatenazione
+Si possono concatenare 2 stringhe:
+#+begin_src java
+String s3 = s1+s2
+String s4= s1.concat(s2)
+#+end_src
+
+*StringBuilder*
+ma se si vogliono concatenare più stringhe si usa la classe ~Stringbuilder~ che ha i metodi ~append~ (concatena la stringa) e insert(int posizione, String s), dopo che le operazioni sulle stringhe sono state completate per ottenere la stringa si chiama il metodo toString() dell'istanza dello stringBuilder
+StringBuilder sb = new StringBuilder()
+sb.append(s1)
+** Ricerca in una stringa
+Si può cercare la prima posizione di un carattere c con : restituisce -1 se il carattere, si applica alle stringhe dove ritorna l'indice del primo carattere della stringa cercata.
+s1.indexof(c)
+** Sostituire caratteri e stringhe
+Con il metodo replace è possibile sostituire tutti le occorrenze di un carattere o di una stringa con un'altra stringa.
+** dividere le stringhe
+#+begin_src java
+String[] s1 = "uno due tre".split(" ");
+for(int i = 0; i < s1.length; i++)
+System.out.println(s1[i]);
+   #+end_src
+
+#+RESULTS:
+: uno
+: due
+: tre
+
+Una stringa può essere divisa in più stringhe grazie al metodo split se passiamo un'espressione regolare s e restituisce un array di sottostringhe separate da s.
+* Confronto tra oggetti
+Tutti gli oggetti incluse le stringhe vanno confrontate con il metodo equals.
+** differenza tra equals e ~==~
+L'operatore == in caso di oggetti confronta il riferimento cioè l'indirizzo in memoria. Quindi è vero solo se si confrontano se puntano alla stessa cosa.
+Il metodo equals confronta la stringa carattere per carattere e restituisce ~true~ se le stringhe contengono la stessa sequenza di caratteri
+#+begin_src java
+String s1 = "ciao";
+String s2 = "ci"+"ao";
+String s3 = "hello";
+System.out.println(s1 == s2); //falso
+System.out.println(s1.equals(s2)); // vero
+System.out.println(s1.equals(s3)); // falso
+#+end_src

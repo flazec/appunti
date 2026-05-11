@@ -1,0 +1,301 @@
+% Created 2026-05-11 Mon 12:30
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{tabularx}
+\author{flavio}
+\date{\today}
+\title{introduzione a java}
+\hypersetup{
+ pdfauthor={flavio},
+ pdftitle={introduzione a java},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Tipi di dato base}
+\label{sec:org1ef7355}
+I tipi di base sono built-in, non sono creati dall'utente. Serve esserne a conoscenza per ragion di efficenza.
+\subsection{Un tipo di dato descrive un insieme di valori e di operazioni definite su quei valori:}
+\label{sec:org1e9179f}
+\begin{table}[htbp]
+\label{Tipi di dato}
+\centering
+\begin{tabular}{lll}
+Tipo & Dominio & Operatori\\
+\hline
+int & Interi & +-*/\%\\
+double & Numeri in virgola mobile & \\
+boolean & valori booleani & \&\&\\
+char & caratteri & + -\\
+\hline
+ &  & \\
+\end{tabular}
+\end{table}
+\subsection{Tutti i tipi built-in}
+\label{sec:org55a36cb}
+\begin{center}
+\begin{tabular}{lll}
+Tipo & Intervallo & Dimensione\\
+\hline
+float & parte intera: ±1038, parte frazionaria: circa 7 cifre  decimali significative & 4 byte\\
+double & parte intera ±10308, parte frazionario: circa 15 cifre decimali significative & 8 byte\\
+int & -2147483648…2147483647 & 4 byte\\
+long & -2147483648…2147483647 & 4 byte\\
+boolean & true,false & 1 byte\\
+char & rappresenta tutti i caratteri codificati con unicode & 2 byte\\
+short & -32768…32767 & 2 byte\\
+byte & -128…127 & 1 byte\\
+\hline
+ &  & \\
+\end{tabular}
+\end{center}
+\subsection{Precedenza operatori aritmetici}
+\label{sec:orgdbf817d}
+\begin{center}
+\begin{tabular}{lll}
+Operatori & Operazioni & Precedenza\\
+\hline
+*,/,\% & Moltiplicazione,divisione,resto & Valutati per primi, da sinistra verso destra\\
++,- & Addizione,Sottrazione & Valutati per secondi, da sinistra verso destra\\
+\hline
+ &  & \\
+\end{tabular}
+\end{center}
+\section{Variabili, dichiarazioni e assegnazioni}
+\label{sec:org3686f22}
+Una variabile è un nome usato per riferirsi a un valore di un tipo di dato
+\begin{itemize}
+\item Può essere dichiarata (\texttt{int a;}) e quindi non è detto che abbia un valore, se non in certi contesti specifici.
+\begin{itemize}
+\item Il valore viene assegnato a una variabile mediante assegnazione \texttt{a = 0;}
+\begin{itemize}
+\item Si può anche dichiarare e assegnare allo stesso tempo: \texttt{int a = 0;}
+
+\begin{minted}[]{java}
+    int a,b; // dichiarazione
+    a = 5; // assegnazione
+    b = a+10; // altra assegnazione
+    int c = a+b; // dichiarazione e assegnazione
+    a = c-3; // assegnazione
+\end{minted}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\section{Letterali}
+\label{sec:org57f578f}
+
+Un letterale è una rappresentazione nel codice sorgente del valore di un tipo di dato.
+
+\begin{itemize}
+\item 27 e 32 sono letterali per gli \texttt{interi}
+\begin{itemize}
+\item 3.14 è un letterale per i \texttt{double}
+\begin{itemize}
+\item \texttt{true} o \texttt{false} sono gli unici due letterali per il tipo booleano
+\begin{itemize}
+\item \texttt{"ciao mondo"} è un letterale per il tipo String
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\subsection{per distinguere gli interi da i numeri in virgola mobile}
+\label{sec:org02a2479}
+\begin{itemize}
+\item Le costanti di tipo \texttt{int} sono semplicemente numeri nell'intervallo [-2000000000,+2000000000]
+\begin{itemize}
+\item Le costanti di tipo \texttt{long} sono specificate con il suffisso \texttt{l} o \texttt{L}
+\end{itemize}
+\end{itemize}
+\subsection{Virgola mobile}
+\label{sec:orge819e1b}
+\begin{itemize}
+\item \texttt{double}: numeri con la virgola
+\begin{itemize}
+\item \texttt{float}: hanno il suffisso \texttt{f} o \texttt{F}: \texttt{10.5f}
+\end{itemize}
+\end{itemize}
+\section{Espressioni}
+\label{sec:orgb103d47}
+Un' Espressione è un letterale, una variabile o una sequenza di operazioni su letterali o varibili che producono un valore.
+
+\begin{minted}[]{java}
+int a = 42*(x-2)+y;
+
+\end{minted}
+\section{Caratteri e Stringhe}
+\label{sec:orgb3852ea}
+Un \texttt{char} è un carattere alfanumerico o un simbolo. Ci sono \(2^{16}\) possibili valori di caratteri.
+\subsection{Caratteri di escape}
+\label{sec:org35e8fde}
+In alcuni casi dobbiamo rappresentare caratteri speciali o non stampabili.
+\subsubsection{breve lista}
+\label{sec:orgb8f9b73}
+\begin{itemize}
+\item Tab: \texttt{'\textbackslash{}t'}
+\item A capo: \texttt{'\textbackslash{}n'}
+\item Backlash: \texttt{'\textbackslash{}\textbackslash{}'}
+\item Apice: \texttt{‘\textbackslash{}’’}
+\item Virgolette: \texttt{‘\textbackslash{}”’}
+\end{itemize}
+\section{Priorità operatori}
+\label{sec:org14cc343}
+\begin{center}
+\begin{tabular}{ll}
+Operatori & Operazioni\\
+\hline
+Post-incremento e post-decremento & ++var --var +espr -espr\\
+Operatori moltiplicativi & * / \%\\
+Operatori additivi & + -\\
+shift & << >> >>>\\
+relazionali & < > <= >= instanceof\\
+confronto & \textasciitilde{} \texttt{= !} \textasciitilde{}\\
+And bit a bit & \&\\
+XOR & \^{}\\
+OR & \\
+OR logico & \\
+operatore ternario & ?:\\
+lambda & ->\\
+assegnazione & = += -= *= /= \%= \&= \^{}= <<= >>= >>>=\\
+\end{tabular}
+\end{center}
+\section{Conversioni di tipo}
+\label{sec:orgb04ae99}
+
+Supponiamo di voler utilizzare il programma per effettuare dei calcoli. Come convertiamo da \texttt{stringa} a \texttt{intero}?
+\subsection{conversione automatica a stringa}
+\label{sec:org5eb016c}
+Quando cerchiamo di concatenare a una stringa un operando di tipo diverso viene convertito automaticamente a stringa.
+
+\begin{minted}[]{java}
+public class PensieroProfondo
+    {
+        public static void main(String[] args)
+            {
+                String s = "La risposta alla fondamentale sulla vita, l'universo e tutto quanto e' ";
+                int v = 42;
+                String risposta = s+v; // equivalente a String risposta = s+Integer.parseInt(v)
+                System.out.println(risposta);
+            }
+}
+\end{minted}
+\subsection{Conversione esplicita}
+\label{sec:orgf23f2e1}
+Utilizzando un metodo che prende in ingresso un argomento di un tipo e restituisce un valore di un altro tipo.
+\texttt{Integer.parseInt(int n), Double.parseDouble(double n), Math.round(double n),  Math.floor(double n), Math.ceil(double n)}
+\subsection{Cast esplicito}
+\label{sec:org4dc7f91}
+Anteponendo il tipo desiderato tra parentesi all'espressione essa verrà convertita.
+\begin{minted}[]{java}
+System.out.println((int)2.781828);
+\end{minted}
+\subsection{Cast implicito}
+\label{sec:orgce3815f}
+\subsubsection{Avviene o in fase di assegnazione: byte, short e char possono essere prommossi a int.}
+\label{sec:orgc006094}
+-int può essere promosso a long
+-float a double
+\subsubsection{calcolo espression}
+\label{sec:orgab2f96b}
+se uno dei due operandi è double, l'intera espressione è promossa a double. Altrimenti se uno dei due operandi è float, l'intera espressione è promossa a float
+\section{Istruzioni di controllo}
+\label{sec:org3ad6d93}
+Finora abbiamno controllato il flussso di esecuzione attraverso La sequenza (l'ordine di esecuzione delle istruzioni). Mediante le istruzioni di controllo condizionali possiamo controllare il flusso del programma.
+\subsection{if ed else}
+\label{sec:org084de92}
+Per realizzare una decisione si usa l'istruzion \texttt{if}.
+\begin{itemize}
+\item La sintassi è \texttt{if(<espressione booleana>) solo un istruzione}
+oppure:
+\texttt{if (<espressione boolean>)} \{
+\}
+
+\begin{minted}[]{java}
+if (x < 0) x = -x; // calcola valore assoluto
+if(x < y){ //credit default swap
+    int t = x;
+    x = y;
+    y = t;
+
+}
+\end{minted}
+\item l'\texttt{else} \textbf{che è facoltativo} viene eseguito se la condizione è falsa. Bisogna fare attenzione quando si annidano i diversi if ed else: l'else si riferisce sempre all'ultimo .
+\begin{minted}[]{java}
+if(x > 0)
+    if(y > 0)
+        System.out.println("x e y sono  > 0");
+else
+    System.out.println("x <= 0")
+if(x > 0)
+    if(y > 0)
+        if(z < 5)
+            if(w >= 3)
+                System.out.println("x e y >= 0 e z <= 5 e w >= 3")
+\end{minted}
+\end{itemize}
+\subsection{Switch}
+\label{sec:org5425616}
+Per confrontare una espressione intera si può usare l'espressione \texttt{switch}
+\begin{minted}[]{java}
+String hello = null;
+switch(new Random.nextInt(6))
+    {
+        case 0: hello = "Ciao" break;
+        case 1: hello = "hello" break;
+            // etc ...
+
+    }
+//versione più compatta
+String s = switch(c) // converte un carettere in rappresentazione
+{
+    switch 'k' -> "kappa";
+    switch 'h' -> "acca";
+    switch 'l' -> "elle";
+    default -> "non so leggerlo";
+}
+\end{minted}
+\section{Istruzioni iterative}
+\label{sec:org38f18ec}
+Ci sono 3 tipi di istruzioni iterative: \texttt{while, for, do while}
+\subsection{while}
+\label{sec:org48b87ea}
+sintassi:
+while(<espressione>)
+\{
+fino a quando espressione è vera
+\}
+semantica:
+eseguito fino
+\subsection{break e i cicli annidati}
+\label{sec:orgd89fb56}
+Il break ci permette di uscire solamente dal ciclo corrente se non si specifica una etichetta.
+\begin{minted}[]{java}
+outer:
+for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+            {
+                if (i == j) break outer;
+            }
+    }
+
+
+\end{minted}
+\end{document}

@@ -1,0 +1,39 @@
+#+title: Coseassolutamentedanonfarejava
+
+The Horror... The Horror...
+Torni la prossima volta.
+* Istruzione iterative
+troppi corpi, troppi casi.
+* Stampare invece di resituire
+Stampa solo se è di logging.
+* x=x+y
+scrivi x+=y
+* metodi static che provano a modificare campi d'istanza
+Il compilatore muto?
+* Troppe righe di codice
+* Oggetti senza dignità
+Emh ok... i guess
+* Parentesi inutili
+diciamo che tengo aperta la slide sulla precedenza.
+* Usare float invece di double
+comprensibile.
+* campi publlici
+si spiega da solo
+
+* Costruttore non salva i parametri
+qualcosa del tipo:
+#+begin_src java
+private Punto p1,p2;
+public segmento (Punto p1, Punto p2)
+   {
+       // non fa niente.
+   }
+#+end_src
+* Inizializzazione due volte i campi
+solo nel costruttore o se proprio devi quando li dichiari.
+* Variabili di appoggio come campi
+Non lo devi mai fare.
+
+
+* Variabili locali a un corpo
+tutto dichiarato all'inizio.

@@ -1,0 +1,78 @@
+% Created 2026-05-11 Mon 12:31
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\author{flavio}
+\date{\today}
+\title{heap, stack e metaspace}
+\hypersetup{
+ pdfauthor={flavio},
+ pdftitle={heap, stack e metaspace},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+L'heap e lo stack e il metaspace sono le tre aree utilizzate per gestire la memoria.
+\section{Rifermenti}
+\label{sec:org001cbde}
+I rifermenti sono indirizzi in memoria. Gli Oggetti non sono mai memorizzati nella variabili, ma viene memorizzato il loro riferimento.
+\section{Heap e stack}
+\label{sec:orga7eb20b}
+\subsection{Heap}
+\label{sec:org6897c0b}
+Lo heap la zona in cui vengono allocati gli oggetti dinamicamente dinamica della memoria.
+\subsection{Stack}
+\label{sec:org9973193}
+In questa zona vengono allocate le variabili locali.
+\section{Campi classe}
+\label{sec:org16bc98a}
+I campi di una classe possono essere dichiarati static. Un campo static è relativo all'intera classe, non al singolo campo. se abbiamo un campo dichiarato static ogni volta che faremo una operazione. Un campo static esiste in una sola locazione di memoria, allocata prima di qualsiasi oggetto della
+classe in una zona speciale di memoria nativa chiamata \texttt{MetaSpace}.
+
+\begin{minted}[]{java}
+public class ContaIstanze
+    {
+        static private int numeroDiIstanze; //inizializzato a zero
+        public ContaIstanze()
+            {
+                numeroDiIstanze++;
+            }
+        public String toString()
+            {
+                return Integer.toString(numeroDiIstanze);
+            }
+        public static void main(String[] args)
+            {
+                new ContaIstanze();
+                new ContaIstanze();
+                new ContaIstanze();
+                System.out.println(ContaIstanze.numeroDiIStanze);
+            }
+    }
+
+\end{minted}
+\section{Metodi statici}
+\label{sec:org8e721fb}
+Un metodo statico è un metodo che non può accedere alle variabili di istanza, ma possono accedere alle variabili di istanza. Per chiamare un metodo statico possiamo semplicemente chiamare \texttt{nomeclasse.metodoStatico}.
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{Metodi_statici/2026-05-07_19-30-38_screenshot.png}
+\end{center}
+\end{document}

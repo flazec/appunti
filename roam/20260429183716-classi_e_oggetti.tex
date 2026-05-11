@@ -1,0 +1,336 @@
+% Created 2026-05-11 Mon 12:29
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\author{flavio}
+\date{\today}
+\title{classi e oggetti}
+\hypersetup{
+ pdfauthor={flavio},
+ pdftitle={classi e oggetti},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Classi e oggetti}
+\label{sec:orgea3bdd5}
+
+Una classe è una parte del codice sorgente che descrive un particolare tipo di oggetto.
+Sono definite dal programmatore.
+La classe definisce la struttura in termini di:
+-\textbf{campi} (stato) degli oggetti
+-\textbf{metodi} degli oggetti
+-Un oggetto è un'istanza (un esemplare) di una classe
+\subsection{classe e oggetti a confronto}
+\label{sec:org90e9d01}
+
+\begin{center}
+\begin{tabular}{ll}
+Classe & Oggetto\\
+Definita all'interno del codice sorgente del programma & un'entità all'interno di un programma in esecuzione\\
+scritta dal programmatore & creato quando un programma ``gira''\\
+Specifica il comportamento dei suoi oggetti mediante il codice dei metodi & Si comporta nel modo prescritto dalla classe quando il metodo corrispondente a tempo di esecuzione\\
+\end{tabular}
+\end{center}
+\subsection{Classe e file sorgenti}
+\label{sec:orgaaef0e0}
+\begin{itemize}
+\item Ogni classe è memorizzata in un file separato il
+\item Il nome del file \textbf{Deve essere uguale} a quello della classe, con estensione .java
+\item I nomi iniziano sempre con una maiuscola
+\item I nomi in Java sono case-sensitive
+\end{itemize}
+\subsubsection{file Automobile.java}
+\label{sec:orgb388166}
+\begin{minted}[]{java}
+public class Automobile
+    {
+        ...
+}
+\end{minted}
+\subsection{Librerie di Classi e package}
+\label{sec:orgede7849}
+I programma java non sono scritti da zero Esistono miglia di classi di libreria per ogni esigenza. Un package ``speciale'' è java.lang: contiene le classi fondamentali per la programmazione in Java.
+\subsection{Struttura di una classe}
+\label{sec:orge20f01c}
+\begin{minted}[]{java}
+public class Counter
+ {
+ // campi
+ private int value;
+
+ //costruttore
+ public Counter()
+ {
+ value = 0
+ }
+ public Counter(int value){
+ this.value = value;
+ }
+ //metodi
+
+ //incrementa il contatore
+ public void count() {
+ value++;
+ }
+ // ottiene il valore corrente del contatore
+ public int getValue() {return value;}
+ public static void main(String[] args)
+ {
+ Counter a = Counter();
+
+ }
+ }
+\end{minted}
+\subsection{Campi}
+\label{sec:org6c59e74}
+Un campo (detto anche \textbf{varibile di istanza}) costituisce la memoria privata di un oggetto; ha un tipo di dato o un un nome/identificativo.
+\subsubsection{Dichiarazione di un campo}
+\label{sec:orgca5e4ad}
+se sono tra parentisi quadre sono opzionali
+\begin{minted}[]{java}
+private [static] [final] tipo_di_dati nome;
+\end{minted}
+\subsubsection{variabili locali vs campi}
+\label{sec:org98324da}
+\begin{itemize}
+\item Sono visibili almeno all'interno di tutti gli oggetti della stessa classe. Esistono per tutta la vita di un oggetto
+\item Le variabili locali sono variabili definite all'interno di un metodo e sono visibili all'interno del metodo e la loro durata è limitata alla durata dell'esecuzione del metodo.
+\end{itemize}
+\subsection{Metodi}
+\label{sec:org4645266}
+Il nome di un metodo inizia con una lettera minuscola, mentre le parole seguenti iniziano con una lettera maiuscola: convezione detta CamelCase.
+\subsubsection{definizione metodo}
+\label{sec:org394a2d7}
+Un metodo è diviso in 2 parti: Intestazione e corpo.
+\textbf{L'intestazione} comprende la visibilità del metodo, il tipo di ritorno e il nome del metodo. Il corpo comprende le istruzioni.
+
+\#+begin\textsubscript{src} java
+public tipo\textsubscript{di}\textsubscript{dati} nomeDelMetodo(tipo\textsubscript{di}\textsubscript{dati} nomeParam1,\ldots{}, tipo\textsubscript{di}\textsubscript{dati} nomeParam)
+\{
+istruzione 1;
+istruzione m;
+\}
+\#+end\textsubscript{src} java
+\subsection{Costruttori}
+\label{sec:orgd5c20fd}
+I costruttori sono metodi per la crazione di oggetti. Hanno lo stesso nome della classe; il loro scopo è inizializzare i campi dell'oggetto. Possono prender zero, uno o più parametri. NON hanno valori di uscita \textbf{ma non viene specificato void}. Una Classe può avere più costruttori o non averne nessuno che differiscono nel numero e nei tipi dei parametri.
+Se non viene specificato alcun costruttore allora java crea una classe con costruttore vuoto senza parametri. Inizializza le variabili d'istanza ai valori di default
+\subsubsection{Costruttore per la classe Counter}
+\label{sec:orgf23952f}
+\begin{minted}[]{java}
+public Counter()
+{
+value = 0;
+}
+public Counter(int initialValue)
+{
+value = initialValue;
+}
+\end{minted}
+\subsubsection{Creazioni oggetti}
+\label{sec:org7ae6c72}
+\section{Incapsulamento}
+\label{sec:org0ec678e}
+L'incapsulamento è una delle idee chiave della programmazione ad oggetti. Permette di nascondere le informazioni all'utente (\textbf{information hiding}).
+\subsection{Definizione}
+\label{sec:org6677311}
+Il processo che nasconde i dettagli realizzativi rendendo pubblica un'interfaccia.
+\begin{itemize}
+\item dettagli realizzativi: campi e implementazione
+\item interfaccia pubblica: metodi pubblici
+\end{itemize}
+L'obiettivo è creare una scatola nera così che l'utente non sappia tutto, ma solo lo stretto necessaria per usare il programma. \textbf{Facilità il lavoro di gruppo} e l'aggiornamento del codice.
+Aiuta a rilevare errori: in presenza di moltissime classi (perché?)
+\subsection{Interazione tra classi}
+\label{sec:orga8bbb7f}
+Le classi interagiscono con le altre principalmente attraverso \textbf{costruttori e metodi pubblici}. Le altri classi \textbf{non DEVONO} conoscere i dettagli implemantivi di una classe per usarla in modo effficace.
+\subsection{Accesso a campi e metodi}
+\label{sec:org79f9b6e}
+I campi e metodi possono essere pubblici e privati.
+\subsubsection{privati}
+\label{sec:orgd80858e}
+Solo la classe che li ha creati può accedere ai campi e chiamare i metodi
+\subsubsection{pubblici}
+\label{sec:orgc303c9b}
+I metodi possono essere chiamati da tutti e i campi possono essere visti da tutti.
+\section{Approfondimento sui metodi}
+\label{sec:org690dede}
+I metodi permettono di modularizzare un programma separandone i compiti in unità autocontenute. Le istruzioni di un metodo non sono visibili da un altro metodo. Certi metodi non utilizzano lo stato dell'oggetto.
+\subsection{metodi statici}
+\label{sec:orgfce7480}
+Il modificatore statico specificato nell'intestazione del metodo.
+Due modi per chiamare:
+\begin{itemize}
+\item Dall'interno della classe, semplicemente chiamando il metodo.
+\begin{itemize}
+\item Dall'esterno, NomeClasse.nomeMetodo()
+\end{itemize}
+\end{itemize}
+\begin{minted}[]{java}
+public static String getLinea(int k)
+    {
+        String s = "";
+        while(k-- > 0) s+="*";
+        return s;
+    }
+\end{minted}
+\subsection{Fun fact su main()}
+\label{sec:org8a6c9cb}
+Perchè è statico? la *J*ava *V*irtual *M*achine (*JVM)invoca il metodo main della classe specificata prima. La classe potrebbe non avere un costruttore senza parametri con cui creare l'oggetto e senza static verrà creata una istanza.
+\subsection{Setter e Getter}
+\label{sec:orgb2d5163}
+L'accesso ad alcuni campi è garantito dai metodi getX() setX() dove X è il campo. Garantiscono la consistenza dei dati. Fanno da filtro tra i dettagli implementativi e ciò che vede l'utente esterno.
+\section{Campi statici}
+\label{sec:orgab177cd}
+Specificando static nella dichiarazione del campo. Si può accedere dall'interno della classe semplicemente con il nomeCampo. NomeClass.nomeCampo.
+\subsection{campi statici noti}
+\label{sec:org01eef3e}
+Sono tutti \texttt{public final static} perchè accessibili a tutti; final perchuè costanti; static perchè non variano secondo lo stato dell'oggetto.
+\subsection{importazione statica dei campi}
+\label{sec:org2f081dc}
+Import static permette di importare campi static come se fossere definiti nella classe in cui si importano.
+\begin{minted}[]{java}
+import static java.lang.Math.E;
+public class StaticImport
+    {
+        public static void main(String[] args)
+            {
+                System.out.println(E);
+
+        }
+}
+\end{minted}
+\section{Enumerazioni}
+\label{sec:org0d1dc55}
+Le enumerazioni sono dei tipi i cui valori possono essere szcelti tra un iniseme predefinito di identificatori univoci. Ogni identificatore corrisponde a una costante. Tutte le costanti enumerative sonho implicitamente static. Non si possono creare oggetti di tipo enumerato.
+\subsection{Dichiarazione Enumerazione}
+\label{sec:org7cb7d97}
+\begin{minted}[]{java}
+public enum SemeCarta
+    {
+        CUORI,
+        QUADRI,
+        FIORI,
+        PICCHE
+    }
+
+\end{minted}
+\subsection{Con Costruttori, Campi, Metodi (acchittata)}
+\label{sec:org4a5d9b3}
+Senza enumerazioni
+\begin{minted}[]{java}
+public class Mese
+    {
+        private int mese;
+        public Mese(int mese) {this.mese = mese;}
+        public int toInt() {return mese;}
+        public String toString()
+            {
+                switch(mese)
+                    {
+                        case 1: return "GEN";
+                        case 2: return "FEB";
+                        case 12 return "DIC";
+                        default: return null;
+                    }
+            }
+}
+\end{minted}
+Con enumerazioni
+\begin{minted}[]{java}
+public enum Mese
+    {
+        GEN(1),FEB(2),MAR(3),APR(4),MAG(5),GIU(6),LUG(7),AGO(8),SET(9),OTT(10),NOV(11),DEC(12);
+        private int mese;
+        Mese(int mese) {this.mese = mese;}
+        public int toInt() {return mese;}
+
+        public static void main(String[] args)
+        {
+            Mese[] mesi = SemeCarta.valueOf
+            for(int i = 0; )
+        }
+    }
+
+\end{minted}
+\subsection{values e valueOf}
+\label{sec:org621cf5f}
+Per ogni enumerazione, il compilatore crea due metodi statici values() che restuisce un array delle costanti enumerative. Viene generato anche un metodo ValueOf(String NomeCostante) che restituisce la costante enumerativa associatra alla stringa fornita in input. Se il valore non esiste, viene generato un errore(eccezione)
+\subsection{Enumerazioni con switch}
+\label{sec:org828a8d7}
+\begin{minted}[]{java}
+Semecarta seme null
+    switch(seme)
+        {
+            case GEN : System.out.println("NUOVO ANNO");break;
+            default: break;
+        }
+
+\end{minted}
+\section{Classi Wrapper}
+\label{sec:org5f46ec2}
+Permettono di gestire un valore primitivo come un oggetto. Forniscono metodi di accesso e visualizzazione dei valori. Essi sono
+
+\begin{center}
+\begin{tabular}{lll}
+Tipo primitivo & Classe & Argomenti del costruttore\\
+byte & Byte & byte o String\\
+short & Short & short o String\\
+int & Intger & int o String\\
+long & Long & long o String\\
+float & Float & float, double o String\\
+double & Double & double o String\\
+char & Character & char\\
+boolean & Boolean & boolean o String\\
+\end{tabular}
+\end{center}
+\subsection{Confrontare oggetti}
+\label{sec:org001f7d7}
+Dato che adesso abbiamo oggetti ci troviamo in una situazione simile alle stringhe
+Per il confronto usiamo:
+\begin{itemize}
+\item equals(): restituisce true se e solo se l’oggetto in input è
+\end{itemize}
+un intero di valore uguale al proprio
+\begin{itemize}
+\item compareTo(): restituisce 0 se sono uguali, < 0 se il
+\end{itemize}
+proprio valore è < di quello in ingresso, > 0 altrimenti
+\subsection{Autoboxing e auto-unboxing}
+\label{sec:orgd8e1576}
+L'autoboxing converte automaticamente un tipo primitivo al suo tipo wrapper associato.
+\begin{minted}[]{java}
+Integer k = 3;
+Integer[] array = {5,3,7,8}; // autoboxing
+int j = k; // k.intValue();
+int n = array[j] // equivalente a array[j].intValue();
+\end{minted}
+L'auto-unoboxing converte automaticamente da un tipo wrapper all'equivalente tipo primitivo.
+\subsubsection{Nelle stringhe}
+\label{sec:orgf7144d8}
+\begin{minted}[]{java}
+String s = "Mondo"; // String s = new String("Mondo")
+String s = "ciao".toUpperCase(); // new String("ciao").toUpperCase();
+\end{minted}
+\subsection{Costo oggetto memoria}
+\label{sec:orgd4bb91a}
+Costa minimo 8 byte.
+\end{document}
