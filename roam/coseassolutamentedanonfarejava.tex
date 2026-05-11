@@ -1,0 +1,78 @@
+% Created 2026-05-11 Mon 17:02
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\author{flavio}
+\date{\today}
+\title{Coseassolutamente da non fare java}
+\hypersetup{
+ pdfauthor={flavio},
+ pdftitle={Coseassolutamente da non fare java},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Istruzione iterative}
+\label{sec:org8467330}
+troppi corpi, troppi casi.
+\section{Stampare invece di resituire}
+\label{sec:orge3d0ca7}
+Stampa solo se è di logging.
+\section{x=x+y}
+\label{sec:org1ca3216}
+scrivi x+=y
+\section{metodi static che provano a modificare campi d'istanza}
+\label{sec:orgfe285e1}
+Ma il compilatore teoricamente dovrebbe dircelo no.
+\section{Troppe righe di codice}
+\label{sec:orgdf5e37a}
+vabbè cerchiamo di essere ragionevoli però non 20 per metodo.
+\section{Oggetti senza dignità}
+\label{sec:org4ac40d7}
+Emh ok\ldots{} i guess
+\section{Parentesi inutili}
+\label{sec:org5e859fa}
+diciamo che tengo aperta la slide sulla precedenza.
+\section{Usare float invece di double}
+\label{sec:orgd1f5c1d}
+comprensibile.
+\section{campi publlici}
+\label{sec:orga4a8898}
+si spiega da solo
+\section{Costruttore non salva i parametri}
+\label{sec:org07f2bc2}
+qualcosa del tipo:
+\begin{minted}[]{java}
+private Punto p1,p2;
+public segmento (Punto p1, Punto p2)
+   {
+       // non fa niente.
+   }
+\end{minted}
+\section{Inizializzazione due volte i campi}
+\label{sec:orgc5b8dd8}
+solo nel costruttore o se proprio devi quando li dichiari.
+\section{Variabili di appoggio come campi}
+\label{sec:orgce975c4}
+Non lo devi mai fare.
+\section{Variabili locali a un corpo}
+\label{sec:org2e61449}
+tutto dichiarato all'inizio.
+\end{document}

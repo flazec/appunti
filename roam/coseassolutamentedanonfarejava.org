@@ -1,7 +1,6 @@
-#+title: Coseassolutamentedanonfarejava
-
-The Horror... The Horror...
-Torni la prossima volta.
+#+title: Coseassolutamente da non fare java
+#+LATEX_LISTINGS:t
+#+LATEX_HEADER: \usepackage{minted}
 * Istruzione iterative
 troppi corpi, troppi casi.
 * Stampare invece di resituire
@@ -9,8 +8,9 @@ Stampa solo se è di logging.
 * x=x+y
 scrivi x+=y
 * metodi static che provano a modificare campi d'istanza
-Il compilatore muto?
+Ma il compilatore teoricamente dovrebbe dircelo no.
 * Troppe righe di codice
+vabbè cerchiamo di essere ragionevoli però non 20 per metodo.
 * Oggetti senza dignità
 Emh ok... i guess
 * Parentesi inutili

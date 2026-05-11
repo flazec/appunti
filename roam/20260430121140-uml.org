@@ -2,7 +2,8 @@
 :ID:       6306c7b4-6cf2-46fe-8bc2-2dd8b2c6d39b
 :END:
 #+title: #+title: UML
-
+#+LATEX_LISTINGS:t
+#+LATEX_HEADER:\usepackage{minted}
 * UML
 /Unified/ /Modeling/ /Language/.  Un linguaggio di modellazione e di specifica basato sul paradigma agli oggetti. Un linguaggio che permette di disegnare in maniera standard, unficato e quindi universalmente comprensibile diversi diagrammi.
 ** Object oriented analysis
