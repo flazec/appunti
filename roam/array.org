@@ -1,5 +1,7 @@
 #+title: Array
-
+#+OPTIONS: todo:nil
+#+LATEX_LISTINGS: t
+#+LATEX_HEADER: \usepackage{minted}
 Un array in java rappresenta un gruppo di variabili (chiamate elementi) tutte dello stesso tipo.
 
 Gli array sono oggetti quindi le variabili di tipo array contengono il riferimento all'array in memoria. Gli elementi di un array possono essere tipi primitivi o riferimenti a oggetti.

@@ -1,4 +1,4 @@
-% Created 2026-05-11 Mon 12:31
+% Created 2026-05-12 Tue 12:55
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 
@@ -13,6 +13,7 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
+\usepackage{minted}
 \author{flavio}
 \date{\today}
 \title{Array}
@@ -51,7 +52,7 @@ int[] a = new int[10] \{1,2,3,4,5,6,7,8,9,10\}
 System.out.println(a[5])
 Indice sempre positivo, compreso tra 0 e la dimensione dell'array-1
 \subsection{Lughezza array}
-\label{sec:org2cd5b67}
+\label{sec:orgc67de1f}
 per la lughezza array \texttt{nomeArray.length} uh oh: campo pubblico? protected? coding horror.
 Esempio di uso:
 \begin{minted}[]{java}
@@ -64,7 +65,7 @@ public int[] getArrayFattorial(final int n)
     }
 \end{minted}
 \subsection{Le dimensioni di un Array non sono modificabili}
-\label{sec:orgc43e93c}
+\label{sec:org64d43e6}
 Una volta dichiarate non crescono dinamicamente, tipo vettore in C++. Bisogna utilizzare il metodo \textbf{CopyOf}. Se le dimensioni dell'array sono maggiori di quelle iniziali allora setta al valore di default per il tipo.
 \begin{minted}[]{java}
 int[] array = {1,5,8,2,3,4}
@@ -75,9 +76,11 @@ array = Arrays.copyOf(array,8); //restringe
 System.out.println(Arrays.toString(array));
 \end{minted}
 \section{Array a 2 dimensioni}
-\label{sec:orgc937843}
+\label{sec:orge148ff8}
 Possiamo specificare un array a 2 dimensioni semplicemente specificando due coppie di parentesi quadre []:
 String[][] matrice = new String[RIGHE][COLONNE]
 L'accesso avviene specificando le due dimensioni dell'array:
 matrice[y][x].
+\subsection{fllllll}
+\label{sec:org7265073}
 \end{document}

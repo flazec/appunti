@@ -7,6 +7,8 @@
 #+LATEX_HEADER: \author{ok}
 #+LATEX_HEADER: \usepackage{minted}
 #+LATEX_HEADER: \usepackage{babel}[italian]
+#+OPTIONS: todo:nil
+
 * Le stringhe
 in java nonostante le apparenze le stringhe non sono un tipo primitivo, ma sono importate dal package java.lang perché l'operatore + viene ridefinito. Inoltre dato che non un tipo primitivo non possiamo utilizzare i normali operatori che abbiamo utilizzato per accedere
 ** ottenere la lunghezza
@@ -79,4 +81,5 @@ String s3 = "hello";
 System.out.println(s1 == s2); //falso
 System.out.println(s1.equals(s2)); // vero
 System.out.println(s1.equals(s3)); // falso
-#+end_src
+#+end_sr
+*  TODO fuckme :noexport:

@@ -1,0 +1,100 @@
+#+title: Polimorfismo
+
+*  Introduzione
+Poli-molte e morfismo-forme. Una variabile di un certo può essere un riferimento a un oggetto del tipo X o di una qualsiasi sua sottoclasse. Lam selezione del metodo da chiamare avviene in base al tipo dell'oggetto. Grazie a questo possiamo utilizzare oggetti diversi con caratteristiche comuni. Non serve conoscere il tipo esatto dell'oggetto su cui si invoca il metodo.
+
+#+begin_src java
+// non provare a far girare questo
+Animale a = new Gatto();
+a.emettiVerso(); // miao
+a = new Chihuahua();
+a.emettiVerso(); // Bau Bau!
+#+end_src
+
+* Binding
+Il binding stabilisce il tipo di una variabile. Ci sono 2 tipi di binding statico e dinamico. Quello effettuato dal compilatore si definisce statico. Quello dinamico è effettuato a runtime. Il polimorfismo obbliga alla realizzazione del binding dinamico, poichè l'associazione tra una variabile riferimento e il metodo viene stabilita a tempo di esecuzione.
+
+* La parola chiave super
+Quando non è usata in un costruttore, può essere usata ovunque per chiamare un metodo della superclasse.
+
+* L'operatore instanceof
+L'operatore instanceof applicato a un oggetto e a un nome di classe restituisce true se l'oggetto è un tipo o sottotipo di quella classe.
+
+* Downcasting e upcasting
+Si sempre convertire senza cast esplicito un sottotipo a un supertipo ~upcasting~. L'abbiamo visto sopra, senza downcasting non c'è polimorfismo. Quando si fa upcasting si restringe temporaneamente l'interfaccia dell'oggetto a quello della superclasse.
+** Downcasting
+A volte può necessario convertire un supertipo a un sottotipo. Richiede un cast esplicito
+#+begin_src
+ImpiegatoStipendiato is2 = (ImpiegatoStipendiato)i;
+#+end_src
+
+Pagina 10
+** Upcasting
+#+begin_src java
+Impiegato i = (Impiegato)is2;
+#+end_src
+
+* Object
+La classe da cui tutte le classi ereditano direttamente o indirettamente. Tutti i suoi 11 metodi sono ereditati.
+#+begin_src java
+public class LaMiaClasse {
+    // ...
+}
+// equivalente
+public class LaMiaClasse extends Object{
+
+}
+#+end_src
+I metodi principali della classe Object
+
+| Metodo                              | Descrizione                                                                          |
+|-------------------------------------+--------------------------------------------------------------------------------------|
+| Obejct Clone()                      | Restituisce una copia dell'oggetto                                                   |
+| boolen equals(Object o)             | Confronta l'oggetto con quello in input                                              |
+| Class<? extends Object>  getClass() | Restituisce un oggetto di tipo Class che contiene informazioni sul tipo dell'oggetto |
+| String toString()                   | Restituisce una rappresentazione di tipo String dell'oggetto                         |
+|-------------------------------------+--------------------------------------------------------------------------------------|
+
+** equals
+serve a confrontare il contenuto di due oggetti. Per default se sono lo stesso oggetto (confronto per riferimento), restituisce true.
+#+begin_src java
+
+// forma standard:
+
+public class Punto
+    {
+        private int x, y, z;
+
+        @Override
+        public boolean equals(Object o){
+            // controlli di routine
+            // "Object o" tipo void *  in C
+            if (o == null) return false; // se null sono non possiamo accedere ai campi
+            if(getClass != o.getClass()) return false; // se getClass è diverso allora si diversi per forza dopo c'è il downcasting è se sbagliato potrebbe crashare
+            // downcasting
+            Punto p = (Punto)p;
+            return x == p.x && p.y == z == p.z;
+        }
+}
+
+#+end_src
+** getClass()
+Il metodo getClass restituisce il tipo effettivo di un oggetto, ossia quello utilizzato per costruirlo. Il binding dinamico utilizza questo tipo per capire quale metodo dell'oggetto chiamare.
+* Enumerazioni e Object
+Ogni enumerazioni ha tante istanze quante sono le costanti enumerative al suo interno non è possibile costruire altre istanze. Le classi enumerative estendono la classe enum da cui ereditano toString e Clone. Enum a sua volta estende Object, per cui il metodo equals confronta solo i riferimenti restituisce true sole se le costanti enumerative sono identiche. Come abbiamo detto enum estende object senza sovraccaricarlo e quindi se 2 costanti enumerative sono identiche. Dato che non possono essere create nuove istanze equals non overloaded funziona.
+** Enumerazioni con costruttori
+Non si possono creare istanze di una enumerazioni. Possono essere costruite le istanze delle costanti
+
+#+begin_src java :dir esempi
+
+public enum TipoDiMoneta{
+    CENT(0.01), CINQUE_CENT(0.5);
+    private double valore;
+    TipoDiMoneta(double valore) {this.valore = valore;}
+    public double getValore(){ return valore; }
+}
+
+#+end_src
+
+* La parola chiave final
+La parola ~final~ è il contrario di ~abstract~, se messa vicino ad una sottoclasse permette di impedire ad altri programmatori di creare sottoclassi o reimplementare certi metodi.

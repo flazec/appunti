@@ -1,0 +1,121 @@
+#+title: Eridetarieta
+#+LATEX_LISTINGS: t
+#+LATEX_HEADER: \usepackage{minted}
+
+* Ereditarietà
+L'eriditarietà è una forma di riuso del software in cui una classe è creata e in cui assorbiamo i membri di una classe esistente. Possiamo anche aggiungere nuove caratteristiche o migliorare quelle esistenti. Diciamo che una classe eredità da un'altra usando la parola chiave ~extends~. Quando usiamo l'ereditarietà
+** Esempio
+#+begin_src java :tangle Forma.java
+public class Forma
+    {
+
+        public void disegna(){}
+}
+#+end_src
+
+#+RESULTS:
+: success
+
+#+begin_src java :tangle Triangolo.java
+public class Triangolo extends Forma{
+    private double base;
+    private double altezza;
+    public Triangolo(double base, double altezza){
+        this.base = base;
+        this.altezza = altezza;
+    }
+    public double getBase(){
+        return base;
+    }
+    public double getAltezza()
+        {
+           return altezza;
+        }
+
+public static void main(String[] args){
+    Triangolo t = null;
+}
+    }
+#+end_src
+
+** cosa ereditiamo?
+La sottoclase eredita i membri della superclasse campi e metodi d'istanza secondo il livello specificato.
+*** Cosa può cambiare?
+- Aggiungere nuovi metodi e campi.
+  - Overloading: ridefinire i metodi che eredita dalla superclasse.
+
+La relazione di ereditarietà in uml
+    #+begin_src plantuml :file Ereditarieta.png
+Class01 <|-- Class02
+class Class01{
+        campi
+        __
+        metodi
+}
+class Class02{
+        campi
+        __
+        metodi
+}
+    #+end_src
+** Classi astratte
+Una classe astratta definita con ~abstract~ non può essere istanziata. Non si possono creare oggetti di quella classe. In altri termini se una classe è dichiarata astratta non possiamo fare ~new NomeClasseAstratta()~. Di solito è estesa da altre classi che possono istanziarla.  anche i metodi possono essere astratti, *però solo in una classe astratta*. L'implementazione non è fornita. Le sottoclassi non astratte devono estenderle
+
+#+begin_src java
+public abstract PersonaggioDisney
+    {
+        abstract void faPasticci();
+    }
+#+end_src
+
+* this e super
+** this
+this usata come nome di metodo deve essere obbligatoriamente nella prima riga del costruttore permette di richiamare un altro costruttore della stessa classe.
+** Super
+La parola chiave super nella prima riga permette di richiamare un costruttore della superclasse.
+
+Quando una superclasse non fornisce un costruttore senza argomenti allora la sottoclasse deve definire un costruttore. Questo avviene quando si definisce un costruttore con almeno un argomento ma non viene definito un costruttore senza argomenti.
+* Differenza tra Overriding e Overloading
+L'overriding consiste nel ridefinire un metodo con la stessa intestazione(tutto quello prima del corpo) presente in una superclasse. L'overloading consiste nel creare un metodo con lo stesso nome, ma una intestazione diversa (diverso numero e/o tipo di argomenti) il tipo di ritorno può essere diverso e la visibilità può essere variata.
+
+** L'annotazione Override
+L'annotazione ~@Override~ viene utilizzata perché informa il compilatore che stiamo effettivamente facendo un override e quindi garantisce che il metodo sovrascritto rispetti le caratteristiche sopra dandoci un errore di compilazione in caso non lo siano.
+esempio di override e overloading TODO CAMBIA stringhe
+#+begin_src java :dir esempi
+
+class Saluto{
+
+    public void boh(){
+        System.out.println("ciao da Super");
+    }
+    public void dasein(int a){
+        System.out.println("dasein");
+    }
+
+    public void mark(int a, int b){
+        System.out.println("ciao ti voglio bene");
+    }
+}
+
+
+#+end_src
+
+#+begin_src java :dir esempi
+class hello extends Saluto{
+    @Override
+    public void boh(){
+        System.out.println("ciao da hello");
+    }
+    // overloaded
+    public void mark(){
+        System.out.println("ehm");
+    }
+    public void main(String[] args){
+        Saluto a = new hello();
+
+    }
+
+    }
+#+end_src
+
+#+RESULTS:
